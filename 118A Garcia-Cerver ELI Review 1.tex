@@ -1,0 +1,82 @@
+\documentclass{article}
+
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,hyperref}
+
+\newcommand{\R}{\mathbb{R}}  
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\bH}{\mathbb{H}}
+
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\brac}[1]{\left[ #1 \right]}
+\newcommand{\paren}[1]{\left( #1 \right)}
+
+\DeclareMathOperator{\real}{Re}
+\DeclareMathOperator{\imag}{Im}
+
+\newcommand{\comp}[2]{#1 \circ #2}
+
+\DeclareMathOperator{\dom}{dom}
+
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+\newenvironment{definition}{\begin{proof}[Definition]}{\end{proof}}
+
+% lol, lmao
+\linespread{1.1}
+\renewcommand{\baselinestretch}{1.17}
+
+% from 117
+    % \newenvironment{practice}
+    % [2]{\begin{trivlist}
+    % \item[\hskip \labelsep {\bfseries     
+    % % "debug mode": for working on it
+    % % Practice #1, Week #2.
+    % % "release mode": for submitting
+    % Week #2: Practice #1.
+    % }\hskip \labelsep]}{\end{trivlist}}
+    
+\begin{document}
+
+% 117
+% \renewcommand{\labelenumi}{(\alph{enumi})}
+
+% ------------------------------------------ %
+%                 START HERE                 %
+% ------------------------------------------ %
+
+\title{ELI Review 1} % Replace with appropriate title
+\author{Nathaniel Hamovitz\\Math 118A, Garcia-Cervera, F22}
+\date{due 2022-09-29}
+
+\maketitle
+
+{\bfseries{Problem.} }
+If $r$ is rational ($r \ne 0$), and $x$ is irrational, prove that $r + x$ and $rx$ are irrational.
+\begin{proof}
+    Since $r$ is rational, we can write $r = \frac{m}{n}$ where $m, n \in \Z$.
+
+    We prove first that $rx$ is irrational. Suppose for a contradiction that $rx$ is rational. Then we can write $\frac{a}{b} = rx = \frac{m}{n}x$, where $a, b \in \Z$. Then, dividing by $r$, we have $\frac{a}{br} = x$, or $\frac{an}{bm} = x$. $a, n, b, m \in \Z$, so $an \in \Z$ and $bm \in Z$. Now we have $x$ as a quotient of integers, which is a contradiction because $x$ is irrational by hypothesis.
+
+    We now show that $r + x$ is irrational; the proof is similar. Suppose for a contradiction that $r + x$ is rational. Then we can write $\frac{a}{b} = r + x = \frac{m}{n} + x$. We subtract $r$ to find $\frac{a}{b} - \frac{m}{n} = x$, or (finding a common denominator) $x = \frac{an - mb}{bn}$. Again, $an - mb \in \Z$ and $bn \in \Z$, and so we have $x$ as a quotient of integers, which is a contradiction because $x$ is irrational by hypothesis.
+\end{proof}
+
+\end{document}

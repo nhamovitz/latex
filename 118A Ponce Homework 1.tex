@@ -1,0 +1,214 @@
+\documentclass{article}
+
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath, amsthm, amssymb, hyperref}
+
+\newcommand{\R}{\mathbb{R}}  
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\bH}{\mathbb{H}}
+
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\brac}[1]{\left[ #1 \right]}
+\newcommand{\paren}[1]{\left( #1 \right)}
+
+\DeclareMathOperator{\real}{Re}
+\DeclareMathOperator{\imag}{Im}
+
+\newcommand{\comp}[2]{#1 \circ #2}
+
+\DeclareMathOperator{\dom}{dom}
+
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+\newenvironment{definition}{\begin{proof}[Definition]}{\end{proof}}
+
+% lol, lmao
+\linespread{1.1}
+\renewcommand{\baselinestretch}{1.17}
+
+% from 117
+    % \newenvironment{practice}
+    % [2]{\begin{trivlist}
+    % \item[\hskip \labelsep {\bfseries     
+    % % "debug mode": for working on it
+    % % Practice #1, Week #2.
+    % % "release mode": for submitting
+    % Week #2: Practice #1.
+    % }\hskip \labelsep]}{\end{trivlist}}
+    
+\begin{document}
+
+% 117
+% \renewcommand{\labelenumi}{(\alph{enumi})}
+
+% ------------------------------------------ %
+%                 START HERE                 %
+% ------------------------------------------ %
+
+\title{Homework 1} % Replace with appropriate title
+\author{Nathaniel Hamovitz\\Math 118A, Ponce, F22}
+\date{due 2022-09-30}
+
+\maketitle
+
+\begin{problem}{1}
+Prove that if $n \in \N$, then $\sqrt{n} \in \N \cup (\Q)^c$. Hint: Review and use the unique-prime-factorization theorem.
+\end{problem}
+\begin{proof}
+    We know by the unique prime factorization that $n = p_1^{k_1} p_2^{k_2} \cdots p_m^{k_m}$, where $p_i$ are distinct primes and $k_i \in \N$. If all $k_i$ are even, then $\sqrt{n} = p_1^{m_1} p_2^{m_2} \cdots p_n^{m_n}$, where $m_i = \frac{k_i}{2} \in \N$, and it is evident that $\sqrt{n} \in \N$.
+
+    If at least one $k_i$ is odd, then $\sqrt{n}$ must be irrational.
+    % needed?
+    % Without loss of generality (multiplication commutes), assume $k_1$ through $k_o$ are odd and $k_{o + 1}$ through $k_m$ are even, and let $s = p_1 p_2 \cdots p_o$.
+    Without loss of generality (multiplication commutes), assume $k_1$ is odd. It suffices to show that $\sqrt{p_1}$ is irrational, because the product of an irrational number is irrational.
+    
+    Assume for a contradiction that $\sqrt{p_1} \in \Q$. Then we can write $\sqrt{n} = \sqrt{p_1}= \frac{a}{b}$, where $a, b \in \Z$. Without loss of generality, we assume $a$ and $b$ are coprime. Now we have $\paren{\frac{a}{b}}^2 = p_1$. Then $a^2 = b^2 p_1$, which implies $p_1 \mid a^2$. Recall that for any prime $p$ and square number $t^2$, $p \mid t^2 \Rightarrow p \mid t$. Thus we have $p_1 \mid a$, and thus $p_1^2 \mid a^2$, and thus (referring to the original equation) $p_1^2 \mid b^2 p_1$, which implies $p_1 \mid b^2$, and therefore $p_1 \mid b$. This is a contradiction, as we assuemd $a$ and $b$ were coprime. Hence $\sqrt{p_1} \in (\Q)^c$, and so $\sqrt{n} = \sqrt{p_1} \sqrt{p_1^{k_1 - 1} p_2^{k_2} \cdots p_m^{k_m}} \in (\Q)^c$.
+
+    Therefore $\sqrt{n} \in \N \cup (\Q)^c$.
+\end{proof}
+
+% --
+
+\begin{problem}{2}
+    Find an example of a set $A \subset \R$ such that $\lambda = \sup A$ is well defined but we may not be able to find it explicitly.
+\end{problem}
+
+\begin{solution}
+    One example is the set $A = \{\cos(n) : n \in \N\}$. $A$ is bounded, and so by the least upper bound property must have a supremum, but it is unclear what the supremum is.
+\end{solution}
+
+% ---
+
+\begin{problem}{3}
+    Rudin, Exercise 1-16: Suppose $k \ge 3$, $\hat x$, $\hat y \in \R^k$, $\abs{\hat x - \hat y} = d > 0$, and $r > 0$. Prove: 
+\end{problem}
+
+\begin{enumerate}
+    \item[(a)] If $2r > d$, there are infinitely many $\hat z \in \R^k$ such that     
+    $$\abs{\hat z - \hat x} = \abs{\hat z - \hat y} = r$$
+
+    \begin{proof}
+        Without loss of generality (all the relevant operations are invariant under translation and rotation), take $\hat x$ and $\hat y$ to lay along the $x$-axis, equidistant from the origin. That is, $\hat x = \paren{-\frac{d}{2}, 0, \dots, 0}$ and $\hat y = \paren{\frac{d}{2}, 0, \dots, 0}$.
+
+        I claim that the intersection is a sphere in dimension $k - 1$, the radius of which is given by $A = \sqrt{r^2 - \paren{\frac{d}{2}}^2}$. The value of $A$ is derived from the Pythagorean theorem in 3 dimensions, starting from $\paren{\frac{d}{2}}^2 + A^2 = r^2$. 
+
+        The curve $C = \{\paren{0, A \cos \theta, A \sin \theta, 0, \dots, 0} : \theta \in [0, 2\pi)\}$ is clearly infinite, and lies along the intersection mentioned above. Thus it suffices to show that $C \subseteq \{z \in \R^k : \abs{\hat x - \hat z} = \abs{\hat y - \hat z} = r\}$.
+        
+        Let $\hat z \in C$. Then $\exists \theta \in [0, 2\pi)$ such that $\hat z = \paren{0, A \cos \theta, A \sin \theta, 0, \dots, 0}$. We have:
+
+        $$\abs{\hat z - \hat x}^2 = \abs{\begin{pmatrix}
+            0 \\
+            A \cos \theta \\
+            A \sin \theta \\
+            \vdots \\
+            0 
+            \end{pmatrix} - \begin{pmatrix}
+                -\frac{d}{2} \\
+                0 \\
+                0 \\
+                0 \\
+                0 
+                \end{pmatrix}}^2 = 
+        \abs{\begin{pmatrix}
+            \frac{d}{2} \\
+            A \cos \theta \\
+            A \sin \theta \\
+            0 \\
+            0 
+            \end{pmatrix}}^2$$
+            $$= \paren{\frac{d}{2}}^2 + A^2\cos^2 \theta + A^2 \sin^2 \theta + 0^2 + \cdots + 0^2$$
+            $$= \paren{\frac{d}{2}}^2 + A^2(1) + 0
+            \\ = \paren{\frac{d}{2}}^2 + A^2
+            \\ = r^2$$
+            $$\abs{\hat z - \hat x} = r$$
+
+    The calculation is similar for $\abs{\hat z - \hat y}$; the only difference is the sign of $\frac{d}{2}$, and it's squared after so it doesn't matter.
+    \end{proof}
+
+
+
+    \item[(b)] If $2r = d$, there is exactly one such $\hat z$.
+
+    \begin{proof}
+
+    We assume $\hat x$ and $\hat y$ are placed on the $x$-axis as before.
+
+    Suppose the point $\hat p = (p_1, p_2, \dots, p_n)$ satisfies the conditions. Then $\abs{x - p} = \abs{y - p} = r$, or $\abs{x - p}^2 = \abs{y - p}^2 = r^2$.
+
+    Using the generalized formula for the norm, we then have $(p_1 + \frac{d}{2})^2 + p_2^2 + \cdots + p_k^2 = r^2$ and $(p_1 - \frac{d}{2})^2 + p_2^2 + \cdots + p_k^2 = r^2$, and subtracting these two equations gives us that 
+    \begin{align*}
+        \paren{p_1 + \frac{d}{2}^2} - \paren{p_1 - \frac{d}{2}^2} &= 0 \\
+        p_1^2 + 2p_1 \frac{d}{2} + \paren{\frac{d}{2}}^2 - p_1^2 + 2 p_1 \frac{d}{2} - \paren{\frac{d}{2}}^2 &= 0 \\
+        4p_1 \frac{d}{2} &= 0 \\
+        p_1 d = 0
+    \end{align*}
+
+    and as $d > 0$, we find $p_1 = 0$. 
+
+    Hence $\hat p = \paren{0, p_2, \dots, p_k}$. Now we return to our assumption, that $\abs{\hat x - \hat p}^2 = r^2$.
+
+    \begin{align*}
+        \abs{\hat x - \hat p}^2 &= r^2 \\
+        \abs{\begin{pmatrix}
+            -\frac{d}{2} \\
+            0 \\
+            \vdots \\
+            0
+        \end{pmatrix} - 
+        \begin{pmatrix}
+            0 \\
+            p_2 \\
+            \vdots \\
+            p_k
+        \end{pmatrix}}^2 &= r^2 \\
+        \paren{-\frac{d}{2}}^2 + p_2^2 + \dots + p_k^2 &= r^2 = \paren{\frac{d}{2}}^2 \\
+        p_2^2 + \dots + p_k^2 &= 0
+    \end{align*}
+
+    but all $p_i^2 \ge 0$, so their sum can only be $0$ if all $p_i^2 = 0$, and thus all $p_i = 0$.
+
+    Again, the calculation is similar for $\hat y$; the only difference is the sign of $\frac{d}{2}$, and it is squared afterward.
+
+    Therefore $\hat p = \paren{0, \dots, 0}$ satisfies $\abs{\hat z - \hat x} = \abs{\hat z - \hat y} = r$; and it is the only point which could do so.
+
+
+
+        
+    \end{proof}
+
+
+
+    \item[(c)] If $2r < d$, there is no such $\hat z$.
+
+    \begin{proof}
+        Suppose for a contradiction that such a $\hat z$ did exist. Then we have, by hypothesis, $\abs{\hat x - \hat y} = d > 2r = \abs{\hat x - \hat z} + \abs{\hat z - \hat y} = 2r$. But the Triangle Inequality tells us that $\abs{\hat x - \hat y} \le \abs{\hat x - \hat z} + \abs{\hat z - \hat y}$, and we have a contradiction.
+    \end{proof}
+
+    \item[(d)] How must these statements be modified if $k$ is $2$ or $1$?
+
+    \begin{solution}
+        If $k = 2$, then there are two such $\hat z$ when the circles overlap; the solutions for (b) and (c) remain the same.
+
+        If $k = 1$, then when the "spheres" overlap there are no such solutions. When $2r = d$, there is again one solution, at $\frac{x + y}{2}$. And the solution for (c) is the same.
+    \end{solution}
+\end{enumerate}
+
+\end{document}

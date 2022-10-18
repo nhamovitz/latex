@@ -1,0 +1,174 @@
+\documentclass{article}
+
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath, amsthm, amssymb, hyperref}
+
+\newcommand{\R}{\mathbb{R}}  
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\bH}{\mathbb{H}}
+
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\brac}[1]{\left[ #1 \right]}
+\newcommand{\paren}[1]{\left( #1 \right)}
+\newcommand{\norm}[1]{\left\Vert #1 \right\Vert}
+\newcommand{\iprod}[2]{\left\langle #1, #2 \right\rangle}
+
+\DeclareMathOperator{\real}{Re}
+\DeclareMathOperator{\imag}{Im}
+
+\newcommand{\comp}[2]{#1 \circ #2}
+
+\DeclareMathOperator{\dom}{dom}
+
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+\newenvironment{definition}{\begin{proof}[Definition]}{\end{proof}}
+
+% lol, lmao
+\linespread{1.1}
+\renewcommand{\baselinestretch}{1.17}
+
+% from 117
+    % \newenvironment{practice}
+    % [2]{\begin{trivlist}
+    % \item[\hskip \labelsep {\bfseries     
+    % % "debug mode": for working on it
+    % % Practice #1, Week #2.
+    % % "release mode": for submitting
+    % Week #2: Practice #1.
+    % }\hskip \labelsep]}{\end{trivlist}}
+    
+\begin{document}
+
+% 117
+% \renewcommand{\labelenumi}{(\alph{enumi})}
+
+% ------------------------------------------ %
+%                 START HERE                 %
+% ------------------------------------------ %
+
+\title{Homework 2} % Replace with appropriate title
+\author{Nathaniel Hamovitz\\Math 108B, Sung, F22}
+\date{due 2022-10-20}
+
+\maketitle
+
+% Chapter 5: 18, 19
+% Chapter 6: , 1, 8, 10, 11, 14, 15, 18
+
+
+\textbf{Axler 2e, Exercise 5.18: }
+Give an example of an operator whose matrix with respect to some basis contains only 0's on the diagonal, but the operator is invertible.
+
+\begin{proof}[Solution]
+    
+\end{proof}
+
+
+\newpage % ---
+
+
+\textbf{Axler 2e, Exercise 5.19: }
+Give an example of an operator whose matrix with respect to some basis contains only nonzero numbers on the diagonal, but the operator is not invertible. 
+
+
+\begin{proof}[Solution]
+    
+\end{proof}
+
+\newpage % ---
+
+
+\textbf{Axler 2e, Exercise 6.1: }
+Prove that if $\vec{x}, \vec{y}$ are nonzero vectors in $\R^2$, then
+$$\iprod{\vec x}{\vec y} = \norm{x} \norm{y} \cos \theta,$$
+where $\theta$ is the angle between $\vec x$ and $\vec y$ (thinking of $\vec x$ and $\vec y$ as arrows with initial point at the origin).
+% Hint: draw the triangle formed by x, y, and (x - y); then use the Law of Cosines
+
+\begin{proof}
+    
+\end{proof}
+
+\newpage % ---
+
+\textbf{Axler 2e, Exercise 6.8: }
+A norm on a vector space $U$ is a function $\norm{\quad}: \mathit{U} \mapsto [0, \infty)$ such that $\norm{u} = 0$ iff $u = 0$; $\norm{\alpha u} = \abs{\alpha} \norm{u}$ for all $\alpha \in \F$ and all $u \in \mathit{U}$, and $\norm{u + v} \le \norm{u} + \norm{v}$ for all $u, v \in \mathit{U}$. Prove that a norm satisfying the parallelogram equality comes from the an inner product (in other words, show that if $\norm{\quad}$ is a norm on $U$ satisfying the parellelogram equality, then there is an inner product $\iprod{\cdot}{\cdot}$ on $U$ such that $\norm{u} = \iprod{u}{u}^{\frac{1}{2}}$ for all $u \in U$).
+
+\begin{proof}
+    
+\end{proof}
+
+
+\newpage % ---
+
+
+\textbf{Axler 2e, Exercise 6.10: }
+On $\mathcal{P}_2(\R)$, consider the inner product given by
+$$\iprod{p}{q} = \int_0^1 p(x) q(x) \: dx.$$
+Apply the Gram-Schmidt prodedure to the basis $(1, x, x^2)$ to produce an orthonormal basis of $\mathcal{P}_2(\R)$.
+% I think this is a worked example in 3e
+
+\begin{proof}[Solution]
+    
+\end{proof}
+
+\newpage % ---
+
+\textbf{Axler 2e, Exercise 6.11: }
+What happens if the Gram-Schmidt procedure is applied to a list of vectors that is not linearly independent?
+
+\begin{proof}[Solution]
+    
+\end{proof}
+
+
+\newpage % ---
+
+
+\textbf{Axler 2e, Exercise 6.14: }
+Find an orthonormal basis of $\mathcal{P}_2(\R)$ (with inner product as in Exercise 10) such that the differentiation operator (the operator that takes $p$ to $p'$) on $\mathcal{P}_2(\R)$ has an upper-triangular matrix with respect to this basis.
+
+\begin{proof}[Solution]
+    
+\end{proof}
+
+
+\newpage % ---
+
+
+\textbf{Axler 2e, Exercise 6.15: }
+Suppose $U$ is a subspace of $V$. Prove that
+$$\dim U^\perp = \dim V - \dim U.$$
+
+\begin{proof}
+    
+\end{proof}
+
+
+\newpage % ---
+
+
+\textbf{Axler 2e, Exercise 6.18: }
+Prove that if $P \in \mathcal{L}(V)$ is such that $P^2 = P$ and
+$$\norm{P\vec v} \le \norm{\vec v}$$
+for every $\vec v \in V$, then $P$ is an orthogonal projection.
+
+\end{document}

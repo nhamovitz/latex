@@ -1,0 +1,150 @@
+\documentclass{article}
+
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath, amsthm, amssymb, hyperref}
+
+\newcommand{\R}{\mathbb{R}}  
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\bH}{\mathbb{H}}
+
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\brac}[1]{\left[ #1 \right]}
+\newcommand{\paren}[1]{\left( #1 \right)}
+
+\DeclareMathOperator{\real}{Re}
+\DeclareMathOperator{\imag}{Im}
+
+\newcommand{\comp}[2]{#1 \circ #2}
+
+\DeclareMathOperator{\dom}{dom}
+
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+\newenvironment{definition}{\begin{proof}[Definition]}{\end{proof}}
+
+% lol, lmao
+\linespread{1.1}
+\renewcommand{\baselinestretch}{1.17}
+
+% from 117
+    % \newenvironment{practice}
+    % [2]{\begin{trivlist}
+    % \item[\hskip \labelsep {\bfseries     
+    % % "debug mode": for working on it
+    % % Practice #1, Week #2.
+    % % "release mode": for submitting
+    % Week #2: Practice #1.
+    % }\hskip \labelsep]}{\end{trivlist}}
+    
+\begin{document}
+
+% 117
+% \renewcommand{\labelenumi}{(\alph{enumi})}
+
+% ------------------------------------------ %
+%                 START HERE                 %
+% ------------------------------------------ %
+
+\title{Homework 1} % Replace with appropriate title
+\author{Nathaniel Hamovitz\\Math 118A, Garcia-Cervera, F22}
+\date{due 2022-10-02}
+
+\maketitle
+
+\begin{problem}{1} % ✅
+    Prove that $\sqrt{2} + \sqrt{3}$ is irrational.
+\end{problem}
+\begin{proof}
+    We use the rational zeroes theorem. Let $x = \sqrt{2} + \sqrt{3}$. Then we have:
+    \begin{align*}
+        x &= \sqrt{2} + \sqrt{3} \\
+        x^2 &= 2 + 2\sqrt{6} + 3 \\
+        x^2 - 5 &= \sqrt{6} \\
+        x^4 - 10x^2 + 25 &= 6 \\
+        x^4 - 10x^2 + 19 &= 0 \\
+    \end{align*}
+
+
+    By the rational zeroes theorem, any rational solution of this equation must be an integer that divides $19$. The only such integers are $\pm 1$ and $\pm 19$, and when those candidates are subsituted back in for $x$, we get $10$ and $126730$. Therefore $x = \sqrt{2} + \sqrt{3}$ is irrational.
+\end{proof}
+
+% ---
+
+\begin{problem}{2}
+    Given nonempty subsets $A$ and $B$ of $\R$, let $C$ denote the set
+    $$C = \{x + y : x \in A, y \in B\}.$$
+    If each $A$ and $B$ has a supremum, then prove that $C$ has a supremum and
+    $$\sup C = \sup A + \sup B.$$    
+\end{problem}
+\begin{proof}
+    It suffices to show that $\sup C \le \sup A + \sup B$ and $\sup C \ge \sup A + \sup B$.
+
+    For all $a \in A$ and $b \in B$, $a + b \le \sup A + b \le \sup A + \sup B$. Therefore $\sup A + \sup B$ is an upper bound of $C$, and so by the least upper bound property, $\sup C$ exists. Further, by the definition of supremum $\sup C \le \sup A + \sup B$.
+
+    Suppose for a contradiction that there exists an upper bound $x$ of $C$ such that $x < \sup A + \sup B$. Then $x - \sup A < \sup B$, which implies $\exists b \in B, x - \sup A < b < \sup B$, and thus that $x - b < \sup A$. Again, this implies that $\exists a \in A, x - b < a < \sup A$, and thus that $x < a + b$. This is a contradiction, as we assumed that $x$ was an upper bound of $C$. Since $\sup C$ is an upper bound of $C$, we have $\sup C \ge \sup A + \sup B$.
+
+    Therefore $\sup C = \sup A + \sup B$.
+\end{proof}
+
+% ---
+
+\begin{problem}{3}
+    Given nonempty subsets $S$ and $T$ of $\R$ such that $S \subseteq T$ and $T$ has a supremum.
+\end{problem}
+\begin{enumerate}
+    \item[(a).] Prove that $S$ has a supremum and $\sup S \le \sup T$.
+    \begin{proof}
+        Since $T$ has a supremum and $S \subseteq T$, $S$ must be bounded above. We can see that $\sup T$ is an upper bound of $s$; $\forall s in S, s \in T$ and $\forall t \in T, t \le \sup T$. As $S$ is bounded above and $S \subseteq \R$, $S$ has a supremum by the least upper bound property.
+
+        By definition, $\forall t \in T, t \le \sup T$. Since $S \subseteq T$, we have also that $\forall s \in S, s \le \sup T$. Therefore $\sup T$ is an upper bound of $S$. However, $\sup S$ is by definition the least upper bound of $S$, and so $\sup S \le \sup T$.
+    \end{proof}.
+
+
+
+    \item[(b).] Give an example of two sets $S$ and $T$ in the real line such that $S \subset T$ (strictly contained), and $\sup S = \sup T$.
+    \begin{solution}
+        $S = (0, 1)$ and $T = [0, 1]$.
+    \end{solution}
+    
+    
+    \item[(c).] Is is true that if two sets satisfy $\sup S = \sup T$ then necessarily $S \subseteq T$? Prove it or give a counterexample.
+    \begin{proof}
+        It is not; one counterexample is $S = [-1, 1]$ and $T = [0, 1]$.        
+    \end{proof}
+\end{enumerate}
+
+% ---
+
+\begin{problem}{4}
+    Let $A$ be a nonempty set of real numbers which is bounded below. Let $-A$ be the set of all numbers $-x$, where $x \in A$. Prove that $\inf A = - \sup(-A)$.
+\end{problem}
+
+\begin{proof}
+    Since $A$ is bounded below, $\inf A$ must exist. By definition of infimum, $\forall a \in A, \inf A \le a$ and thus $-a \le -\inf A$. Hence $-\inf A$ is an upper bound for $-A$, and so $-A$ must have a supremum.
+
+    Now we show that $-\inf A$ is the least upper bound of $-A$. Let $t \in \R$; suppose $t$ is an upper bound of $-A$. Then we have that $\forall a \in A, t \ge -a$ or equivalently that $-t \le a$. Assume for a contradiction that $t < -\inf A$. Then $\inf A < -t$, and so $\exists x \in A$ such that $\inf A < x < -t$. This is a contradiction as if $t$ is an upper bound of $-A$ then $\forall a \in A, a \ge -t$.
+    
+    Therefore $\sup(-A) = -\inf A$; multiply by $-1$ and we have finally that $\inf A = - \sup (-A)$.
+
+
+\end{proof}
+
+\end{document}

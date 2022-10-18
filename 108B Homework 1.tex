@@ -1,0 +1,209 @@
+\documentclass{article}
+
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath, amsthm, amssymb, hyperref}
+
+\newcommand{\R}{\mathbb{R}}  
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\bH}{\mathbb{H}}
+
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\brac}[1]{\left[ #1 \right]}
+\newcommand{\paren}[1]{\left( #1 \right)}
+
+\DeclareMathOperator{\real}{Re}
+\DeclareMathOperator{\imag}{Im}
+
+\newcommand{\comp}[2]{#1 \circ #2}
+
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\spann}{span}
+
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+\newenvironment{definition}{\begin{proof}[Definition]}{\end{proof}}
+
+% lol, lmao
+\linespread{1.1}
+\renewcommand{\baselinestretch}{1.17}
+
+% from 117
+    % \newenvironment{practice}
+    % [2]{\begin{trivlist}
+    % \item[\hskip \labelsep {\bfseries     
+    % % "debug mode": for working on it
+    % % Practice #1, Week #2.
+    % % "release mode": for submitting
+    % Week #2: Practice #1.
+    % }\hskip \labelsep]}{\end{trivlist}}
+    
+\begin{document}
+
+% 117
+% \renewcommand{\labelenumi}{(\alph{enumi})}
+
+% ------------------------------------------ %
+%                 START HERE                 %
+% ------------------------------------------ %
+
+\title{Homework 1} % Replace with appropriate title
+\author{Nathaniel Hamovitz\\Math 108B, Sung, F22}
+\date{due 2022-10-06}
+
+\maketitle
+
+\begin{problem}{1}
+    Find a $4 \times 4$ matrix with no real eigenvalues, and prove it. Find a $4 \times 4$ matrix with exactly one
+    eigenvalue $\lambda$, such that the dimension of the subspace formed by the collection of all eigenvectors
+    for that eigenvalue is $2$-dimensional, and prove it.
+\end{problem}
+
+\begin{solution}
+    One such matrix is 
+    $$\begin{pmatrix}
+        0 & 0 & 0 & -1 \\
+        1 & 0 & 0 & 0 \\
+        0 & 1 & 0 & 0 \\
+        0 & 0 & 1 & 0
+    \end{pmatrix},$$
+    which has a characteristic polynomial of $\lambda^4 + 1$, which has no real roots.
+
+    One such matrix is 
+    $$\begin{pmatrix}
+        2 & 0 & 0 & 0 \\
+        0 & 2 & 0 & 0 \\
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 
+    \end{pmatrix}.$$
+    Clearly $\lambda = 2$ is an eigenvalue, with corresponding eigenvectors
+    $$v_1 = \begin{pmatrix}
+        1 \\ 0 \\ 0 \\ 0
+    \end{pmatrix} \text{ and } 
+    v_2 = \begin{pmatrix}
+        0 \\ 1 \\ 0 \\ 0
+    \end{pmatrix}.$$
+    $\spann\{v_1, v_2\}$ is a 2-dimensional subspace.
+\end{solution}
+
+% ---
+
+\begin{problem}{2}
+    Let $V$ be a vector space of dimension $n$ over a field $k$, $T: V \mapsto V$ a linear transformation such that $T^n = 0$ and $T^{n - 1} \ne 0$. Assume $v \in V$ is not contained in the kernel of $T^{n - 1}$.
+
+    Prove $B = \{v, \dots, T^{n - 1}v\}$ is a basis for $V$. Compute the matrix for $T$ with respect to $B$. Let $c \in k$ and define $S: V \mapsto V$ such that $S(u) = cu + T(v)$. Compute the matrix of $S$ with respect to $B$.
+\end{problem}
+
+\begin{proof}
+    $B$ is clearly the correct size
+    % dimension? length?
+    to be a basis for $V$, to it is sufficient to show $B$ is linearly independent. Suppose $a_1 v + a_2 Tv + \cdots + a_n T^{n - 1}v = 0$. Then transform both sides by $T$; now we have $a_1 Tv + a_2 T^2 v + \cdots + a_n T^n v = 0$. Because $T^n v = 0$, this simplifies to $a_1 Tv + a_2 T^2 v + \cdots a_{n - 1} T^{n - 1} v = 0$. Continue applying $T$ and simplifying, $n - 1$ times until only the $a_1$ term remains. Now the equation is $a_1 T^{n - 1} v = 0$. Because $v \notin \ker T^{n - 1}$, $T^{n - 1} v \ne 0$, and thus we have that $a_1 = 0$.
+
+    Thus, returning to our hypothesis, the $a_1$ term drops out and we have $a_2 Tv + \cdots + a_n T^{n - 1} v = 0$. Repeat the process, this time multiplying by $T^{n - 2}$; at the end we have $a_2 T^{n - 1} v = 0$ and thus $a_2 = 0$. This process, of multiplying by $T^{n - k}$ until the equation simplifies to $a_k T^{n - 1} v = 0$ and hence $a_k = 0$, and then dropping the $a_k$ term, can be repeated all the way until we are left with $a_n T^{n - 1} v = 0$. Then $a_n = 0$ and we have found that all $a_i = 0$. 
+
+    Therefore $B$ is linearly independent, and hence a basis for $V$.
+
+    The columns of a matrix with respect to some basis are equivalent to the product of that matrix with the standard basic vectors. Let $b_i$ be the $i$th basis vector in $b$. Then $b_2 = T b_1$, $b_3 = T b_2$, and so on until $b_n = T b_{n - 1}$ and $0 = T b_n$. Then, because the $i$th basic vector with respect to it's own basis is just the $i$th column of $I$, we have that
+    $$T_B = \begin{pmatrix}
+        0 & 0 & 0 & \cdots & 0\\
+        1 & 0 & & \ddots & 0  \\
+        0 & 1 &  \ddots & & 0 \\
+        \vdots & \ddots  & \ddots &\ddots  & \vdots \\
+        0 & \cdots & 0 & 1 & 0
+    \end{pmatrix}$$    
+
+    We examine $S$ by a similar process and find that
+    $$S_T = \begin{pmatrix}
+        c & 0 & 0 & \cdots & 0\\
+        1 & c & & \ddots & 0  \\
+        0 & 1 &  \ddots & & 0 \\
+        \vdots & \ddots  & \ddots & c & \vdots \\
+        0 & \cdots & 0 & 1 & c
+    \end{pmatrix}$$   
+\end{proof}
+
+% ---
+
+\textbf{Axler 2nd edition, Exercise 5-3} % not done
+Prove or give a counterexample: if $U$ is a subspace of $V$ that is invariant under every operator on $V$, then $U = \{0\}$ or $U = V$.
+
+\begin{proof}
+    We prove the contrapositive: that if a subspace $U$ of $V$ is not $\{0\}$ or $V$, then there exists some operator on $V$ which $U$ is not invariant under. Suppose there is such a $U$. Then exists $v_1 \in U$ and $v_2 \notin U$ such that $v_1 \ne v_2 \ne 0$. Since $v_1$ and $v_2$ are linearly independent, $\spann\{v_1, v_2\}$ is a subspace of $v$. Now we draw upon Theorem 2.34 in Axler 3rd edition, which tell us that there exists some other subspace of $V$ such that $\spann\{v_1, v_2\} \oplus W = V$.
+    
+    To define a linear operator on $V$, it suffices to specify it's behavior on $v_1$, $v_2$, and all $w \in W$. We construct $T$ such that $T(v_1) = v_2$, $T(v_2) = v_1$, and $T(w) = w$. $U$ is not invariant under $T$, and therefore such a $U$ is not invariant under every operator on $V$.
+\end{proof}
+
+% ---
+
+\textbf{Axler 2nd edition, Excercise 5-10} Suppose $T \in \mathcal{L} (V)$ is invertible and $\lambda \in \F \setminus \{0\}$. Prove that $\lambda$ is an eigenvalue of $T$ if and only if $\frac{1}{\lambda}$ is an eigenvalue of $T^{-1}$.
+
+\begin{proof}
+    ($\Longrightarrow$) Suppose $\lambda$ is an eigenvalue of $T$. Then $\exists \vec v \in V$ such that \begin{align*}
+        T \vec{v} &= \lambda \vec{v} \\
+        T^{-1} T \vec{v} &= T^{-1} \lambda \vec{v} \\
+        \vec{v} &= T^{-1} \lambda \vec{v} \\
+        \vec{v} \frac{1}{\lambda} &= T^{-1}\vec{v} \\
+    \end{align*}
+    That is, $\frac{1}{\lambda}$ is an eigenvalue of $T^{-1}$.
+
+    ($\Longleftarrow$) The process is extremely similar. Supose $\frac{1}{\lambda}$ is an eigenvalue of $T^{-1}$. Then $\exists \vec v \in V$ such that \begin{align*}
+        T^{-1} \vec{v} &= \frac{1}{\lambda} \vec v \\
+        \vec{v} &= T \frac{1}{\lambda} \vec v \\
+        \lambda \vec{v} &= T \vec v
+    \end{align*}.
+
+    Therefore $\lambda$ is an eigenvalue of $T$ if and only if $\frac{1}{\lambda}$ is an eigenvalue of $T^{-1}$.    
+\end{proof}
+
+% ---
+
+
+\textbf{Axler 2nd edition, Excercise 5-15}
+(In $\mathbb{C}$.) Suppose $T \in \mathcal{L} (V), p \in \mathcal{P}(\mathbb{C})$, and $a \in \mathbb C$. Prove that $a$ is an eigenvalue of $p(T)$ if and only iff $a = p(\lambda)$ for some eigenvalue $\lambda$ of $T$.
+
+\begin{proof}
+($\Longrightarrow$) Suppose that $a$ is an eigenvalue of of $p(T)$. Then $\exists \vec v$ such that $p(T)v = a \vec v$ or equivalently that
+$$\paren{p(T) - aI}\vec v = \vec 0.$$
+We can multiply out the polynomial on the LHS to get 
+$$\brac{c_n T^n + \cdots + c_1 T + (c_0 - a)I}\vec v = \vec 0.$$
+By the Fundamental Theorem of Algebra, this polynomial can be written as the product of linear factors
+$$\brac{c(T - \lambda_1I)(T - \lambda_2I) \cdots (T - \lambda_nI) }\vec v = \vec 0.$$
+But for that to be true, $\vec v$ must be in the null space of $(T - \lambda_jI)$ for some $j$ between $1$ and $n$. Then $T \vec v = \lambda_j \vec v$ and so $\lambda_j$ is an eigenvalue corresponding to eigenvector $\vec v$. Additionally, $\lambda j$ is a root of $p(z) - a$, and so $p(\lambda_j) - a = 0$ or $p(\lambda_j) = a$.
+
+($\Longleftarrow$) Suppose $a = p(\lambda)$ for some eigenvalue $\lambda$ of $T$. Then $\lambda$ is a root of $p(\cdot) - a$.
+
+I can't quite figure out the rest of this proof and it's very late.
+\end{proof}
+
+% ---
+
+
+\textbf{Axler 2nd edition, Excercise 5-16}
+Show that the result in the previous exercise does not hold if $\mathbb{C}$ is replaced with $\R$.
+
+\begin{proof}
+    The proof above relies on the Fundamental Theorem of Algebra, which is only valid under the complex field; it has many counterexamples among $p(\F)$.
+\end{proof}
+
+% ---
+
+
+
+\end{document}

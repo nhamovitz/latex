@@ -1,0 +1,353 @@
+\documentclass{article}
+
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath, amsthm, amssymb, hyperref}
+
+\newcommand{\R}{\mathbb{R}}  
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\bH}{\mathbb{H}}
+
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\brac}[1]{\left[ #1 \right]}
+\newcommand{\paren}[1]{\left( #1 \right)}
+
+\DeclareMathOperator{\real}{Re}
+\DeclareMathOperator{\imag}{Im}
+
+\newcommand{\comp}[2]{#1 \circ #2}
+
+\DeclareMathOperator{\dom}{dom}
+
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+\newenvironment{definition}{\begin{proof}[Definition]}{\end{proof}}
+
+% lol, lmao
+\linespread{1.1}
+\renewcommand{\baselinestretch}{1.17}
+
+% from 117
+    % \newenvironment{practice}
+    % [2]{\begin{trivlist}
+    % \item[\hskip \labelsep {\bfseries     
+    % % "debug mode": for working on it
+    % % Practice #1, Week #2.
+    % % "release mode": for submitting
+    % Week #2: Practice #1.
+    % }\hskip \labelsep]}{\end{trivlist}}
+    
+\begin{document}
+
+% 117
+% \renewcommand{\labelenumi}{(\alph{enumi})}
+
+% ------------------------------------------ %
+%                 START HERE                 %
+% ------------------------------------------ %
+
+\title{Homework 1} % Replace with appropriate title
+\author{Nathaniel Hamovitz\\Math 119A, Nagy, F22}
+\date{due 2022-10-04}
+
+\maketitle
+
+\begin{problem}{1}
+    For each matrix below compute the Jordan normal form.
+\end{problem}
+
+\begin{enumerate}
+    \item[I] $\mathbf A = \begin{pmatrix}
+        2 & -1 \\
+        -1 & 2
+    \end{pmatrix}$
+
+    \begin{solution}
+        % WA
+        $\mathbf A = \mathbf M^{-1} \mathbf J \mathbf M$
+        where
+        $\mathbf M^{-1}
+         = \begin{pmatrix}
+            1 & -1 \\
+            1 & 1
+        \end{pmatrix}$,
+        $\mathbf 
+        J = \begin{pmatrix}
+            1 & 0 \\
+            0 & 3
+        \end{pmatrix}$, and
+        $\mathbf 
+        M = \frac{1}{2}\begin{pmatrix}
+            1 & 1 \\
+            -1 & 1 \\
+        \end{pmatrix}$.
+    \end{solution}
+
+
+    \item[II] $B = \begin{pmatrix}
+        1 & 4 \\
+        -1 & -3
+    \end{pmatrix}$
+
+    \begin{solution}
+        % WA
+        $\mathbf A = \mathbf M^{-1} \mathbf J \mathbf M$
+        where
+        $\mathbf M^{-1}
+         = \begin{pmatrix}
+            -2 & -1 \\
+            1 & 0
+        \end{pmatrix}$,
+        $\mathbf 
+        J = \begin{pmatrix}
+            -1 & 1 \\
+            0 & -1
+        \end{pmatrix}$, and
+        $\mathbf 
+        M = \begin{pmatrix}
+            0 & 1 \\
+            -1 & -2 \\
+        \end{pmatrix}$.
+
+    \end{solution}
+
+
+
+    % \item[III] $C = \begin{pmatrix}
+    %     -3 & 2 \\
+    %     -2 & -3
+    % \end{pmatrix}$
+    % \begin{solution}
+    % \end{solution}
+
+
+\end{enumerate}
+
+
+% ---
+
+
+\begin{problem}{2}
+    Let $A$, $B$, and $C$ be as in Problem 1. Compute the following matrix exponentials.
+
+    Hint: Recall that if $X = M^{-1}JM$, then $\exp(Xt) = M^{-1} \exp(Jt) M$.
+\end{problem}
+
+\begin{enumerate}
+    \item[I] $\exp(\mathbf At)$
+    \begin{solution}
+    \begin{align*}
+        \exp(\mathbf At) &= \begin{pmatrix}
+            1 & -1 \\
+            1 & 1
+        \end{pmatrix} \exp \paren{\begin{pmatrix}
+            1 & 0 \\
+            0 & 3
+        \end{pmatrix}t}
+        \cdot \frac{1}{2} \begin{pmatrix}
+            1 & 1 \\
+            -1 & 1 \\
+        \end{pmatrix} \\
+        &= \begin{pmatrix}
+            1 & -1 \\
+            1 & 1
+        \end{pmatrix} \begin{pmatrix}
+            e^t & 0 \\
+            0 & e^{3t}
+        \end{pmatrix}
+        \cdot \frac{1}{2} \begin{pmatrix}
+            1 & 1 \\
+            -1 & 1 \\
+        \end{pmatrix} \\
+        &= \frac{e^t}{2} \begin{pmatrix}
+            e^{2t}+1 & -e^{2t} + 1 \\
+            -e^{2t} + 1 & e^{2t}+1
+        \end{pmatrix}
+    \end{align*}
+    \end{solution}
+
+\vspace*{100pt}
+
+    \item[II] $\exp(\mathbf Bt)$
+    \begin{solution}
+        \begin{align*}
+            \exp(\mathbf Bt) &= \begin{pmatrix}
+                -2 & -1 \\
+                1 & 0
+            \end{pmatrix} \exp \paren{\begin{pmatrix}
+                -1 & 1 \\
+                0 & -1
+            \end{pmatrix}t}
+            \begin{pmatrix}
+                0 & 1 \\
+                -1 & 2 \\
+            \end{pmatrix} \\
+            &= \begin{pmatrix}
+                -2 & -1 \\
+                1 & 0
+            \end{pmatrix}
+            \begin{pmatrix}
+                e^{-t} & e^{-t} \\
+                0 & e^{-t}
+            \end{pmatrix}
+            \begin{pmatrix}
+                0 & 1 \\
+                -1 & 2 \\
+            \end{pmatrix} \\
+            &= e^{-t} \begin{pmatrix}
+                3 & 4 \\
+                -1 & -1
+            \end{pmatrix}
+        \end{align*}
+        \end{solution}
+
+
+    % \item[III] $\exp(Ct)$  
+    % \begin{solution}
+    % \end{solution}
+
+
+\end{enumerate}
+
+% ---
+
+\begin{problem}{3}
+    Let $A$, $B$, and $C$ be as in Problem 1. Solve the following initial value problems. (We learned two techniques to solve, you may use either, but you have to submit a full solution for full credit.)
+\end{problem}
+
+\begin{enumerate}
+    \item[I] $\vec x'(t) = A \vec x(t)$, and $\vec x(0) = \begin{pmatrix}
+        1 \\
+        2
+    \end{pmatrix}$
+
+    \begin{solution}
+    \end{solution}
+
+    \item[II] $\vec y'(t) = B \vec y(t) + \begin{pmatrix}
+        1 \\
+        -1
+    \end{pmatrix}$, and $\vec y(0) = \begin{pmatrix}
+        0 \\
+        1
+    \end{pmatrix}$
+
+    \begin{solution}
+    \end{solution}
+
+    
+
+    % \item[III] $\vec z'(t) = \mathbf{C} \vec z(t) + \begin{pmatrix}
+    %     t \\
+    %     0
+    % \end{pmatrix}$, and $\vec z(0) = \begin{pmatrix}
+    %     3 \\
+    %     -2
+    % \end{pmatrix}$
+
+    % \begin{solution}
+    % \end{solution}
+\end{enumerate}
+
+% ---
+
+\begin{problem}{4}
+    Use mathematical induction to prove that for all $n \in \N_+$, we have the following:
+\end{problem}
+
+\begin{enumerate}
+    \item[I]
+    $(M^{-1} X M)^n = M^{-1} X^n M$. (Here $M$ is any invertible matrix and $X$ is any square matrix).
+    \begin{proof}
+        The statement is clearly true for the base case of $n = 1$.
+        
+        For the induction step, suppose that for some $n \in \N$, $(M^{-1} X M)^n = M^{-1} X^n M$. Multiply both sides by $M^{-1} X M$ on the right. On the LHS, this is the expression inside the parenthetical, so the exponent becomes $n + 1$. On the RHS, we have $M^{-1} X^n M M^{-1} X M$; the multiplication of $M$ and its inverse in the center cancels out and we have $M^{-1} X^n X M$. Then because $X^n X = X^{n + 1}$ the RHS simplifies to $M^{-1} X^{n + 1} M$.
+
+        Thus, we see that if we assume $(M^{-1} X M)^n = M^{-1} X^n M$, then $(M^{-1} X M)^{n + 1} = M^{-1} X^{n + 1} M$. Hence the relation holds for all $n \in \N$.
+    \end{proof}
+
+
+
+    \item[II]
+    $\begin{pmatrix}
+        \lambda & 1 \\
+        0 & \lambda
+    \end{pmatrix}^n =
+    \begin{pmatrix}
+        \lambda^n & n \lambda^{n - 1} \\
+        0 & \lambda^n
+    \end{pmatrix}$
+    \begin{proof}
+        The base case $n = 1$ is evident:
+        $$\begin{pmatrix}
+            \lambda & 1 \\
+            0 & \lambda
+        \end{pmatrix}^1 =
+        \begin{pmatrix}
+            \lambda & 1 \\
+            0 & \lambda
+        \end{pmatrix} =
+        \begin{pmatrix}
+            \lambda^1 & 1 \cdot \lambda^{0} \\
+            0 & \lambda^1
+        \end{pmatrix}$$
+
+        For the induction step, suppose that for some $n \in \N$,
+        $$\begin{pmatrix}
+            \lambda & 1 \\
+            0 & \lambda
+        \end{pmatrix}^n =
+        \begin{pmatrix}
+            \lambda^n & n \lambda^{n - 1} \\
+            0 & \lambda^n
+        \end{pmatrix}.$$
+
+        Multiply on the right by the matrix $\begin{pmatrix}
+            \lambda & 1 \\
+            0 & \lambda
+        \end{pmatrix}$. On the left hand side, this just increses the exponent by one and we have $\begin{pmatrix}
+            \lambda & 1 \\
+            0 & \lambda
+        \end{pmatrix}^{n + 1}$. On the right hand side, we have
+        $$\begin{pmatrix}
+            \lambda^n & n \lambda^{n - 1} \\
+            0 & \lambda^n
+        \end{pmatrix}
+        \begin{pmatrix}
+            \lambda & 1 \\
+            0 & \lambda
+        \end{pmatrix}
+        = \begin{pmatrix}
+            \lambda^n \cdot \lambda + n \lambda^{n - 1} \cdot 0 & \lambda^n \cdot 1 + n \lambda^{n - 1} \cdot \lambda \\
+            0 \cdot \lambda + \lambda^n \cdot 0 & 0 \cdot 1 + \lambda^n \cdot \lambda
+        \end{pmatrix}
+        = \begin{pmatrix}
+            \lambda^{n + 1} & (n + 1)\lambda^{n} \\
+            0 & \lambda^{n + 1}
+        \end{pmatrix}$$
+
+        which implies that the proposition holds for $n + 1$, and therefore for all $n \in \N$.   
+        
+    \end{proof}
+
+
+\end{enumerate}
+
+\end{document}

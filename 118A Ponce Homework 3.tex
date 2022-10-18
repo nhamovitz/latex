@@ -1,0 +1,208 @@
+\documentclass{article}
+
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath, amsthm, amssymb, hyperref}
+
+\newcommand{\R}{\mathbb{R}}  
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\bH}{\mathbb{H}}
+
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\brac}[1]{\left[ #1 \right]}
+\newcommand{\paren}[1]{\left( #1 \right)}
+
+\DeclareMathOperator{\real}{Re}
+\DeclareMathOperator{\imag}{Im}
+
+\newcommand{\comp}[2]{#1 \circ #2}
+\newcommand{\ol}[1]{\overline{#1}}
+
+\DeclareMathOperator{\dom}{dom}
+
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+\newenvironment{definition}{\begin{proof}[Definition]}{\end{proof}}
+
+% lol, lmao
+\linespread{1.1}
+\renewcommand{\baselinestretch}{1.17}
+    
+\begin{document}
+
+% 117
+% \renewcommand{\labelenumi}{(\alph{enumi})}
+
+% ------------------------------------------ %
+%                 START HERE                 %
+% ------------------------------------------ %
+
+\title{Homework 3} % Replace with appropriate title
+\author{Nathaniel Hamovitz\\Math 118A, Ponce, F22}
+\date{due 2022-10-18}
+
+\maketitle
+
+\textbf{1. }
+Rudin Ch. 2, Exc. 17: Let $E$ be the set of all $x \in [0, 1]$ whose decimal expansion contains only the digits $4$ and $7$. Is $E$ countable? Is $E$ dense in $[0, 1]$? Is $E$ compact? Is $E$ perfect?
+
+\begin{proof}[Solution]
+    $E$ is not countable; you can draw a bijection between $E$ and the set of functions from $\N$ to $[0, 1]$ (if the $i$th digit is $4$, then $f(i) \equiv 0$; if the $i$th digit is $7$, then $f(i) \equiv 1$), a set which we showed in class is uncountable, by Cantor's Diagonal Argument.
+
+    $E$ is not dense in $[0, 1]$. Because the decimal expansions of the elements of $E$ contain only $4$ and $7$, $E \subset [0.4, 0.5) \cup [0.7, 0.8)$. Consider $0.6 \in [0, 1]$. $0.6$ is not in either of those intervals, and so could not possibly be a limit point of $E$. (To see this concretely, consider $B_{0.05}(0.6)$, which contains no elements of $E$.) Therefore $E$ is not dense in $[0, 1]$.
+
+
+
+    % how to prove density?  
+    
+\end{proof}
+
+\newpage % ---
+
+\textbf{2. }
+Let $(X, d)$ be a metric space. For $A \subset X$ we define its boundary $\partial A$ and $\partial A = \overline{A} \cap \overline{A^c}$. Prove:
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\begin{enumerate}
+    \item % ✅
+    $\partial A = \partial(A^c)$
+    \begin{proof}
+        $\partial(A^c) = \overline{A^c} \cap \ol{(A^c)^c}$ by definition, which is $\ol {A^c} \cap \ol A$, which is the definition of $\partial A$.
+    \end{proof}
+
+
+    \item % ✅
+    $\partial A = \overline{A} - A^o$
+    \begin{proof}
+        First let $x \in \partial A$. Then $x \in \ol{A}$ and $x \in \ol{A^c}$. By a lemma on the previous homework, we know that $\ol{A^c} = (A^o)^c$. Hence, since $x \in \ol{A^c}$, $x \notin A^o$. Therefore $x \in \ol{A}$ and $x \notin A^o$, and so $x \in \ol{A} - A^o$. Therefore $\partial A \subseteq \ol{A} - A^o$.
+
+        Now let $x \in \ol{A} - A^o$. Then $x \in \ol{A}$ and $x \notin A^o$. Hence $x \in (A^o)^c$, and by a lemma on the previous homework, $(A^o)^c = \ol{A^c}$. Thus $x \in \ol{A^c}$, and so $x \in \ol{A} \cap \ol{A^c}$. That's the definition of boundary, and so $x \in \partial{A}$, and therefore $\ol{A} - A^o \subseteq \partial A$. 
+
+        Therefore $\partial A = \overline{A} - A^o$
+    \end{proof}
+
+
+    \item % ✅
+    $\overline{A} = \partial A \cup A^o$
+    \begin{proof}
+        First let $x \in \ol{A}$. 
+        Because $\partial A = \ol{A} - A^o$, we have that $\partial A \cup A^o = (\ol{A} - A^o) \cup A^o$. That is, all the points in the closure except those in the interior, and also all those in the interior. Hence $x \in \partial A \cup A^o$, and so $\ol{A} \subseteq \partial A \cup A^o$.
+
+        Now let $x \in \partial A \cup A^o$. Again, this is all the points in the closure except those in the interior, and also all those in the interior. If $x \in \ol{A}$, we are done; and $x \in A^o \setminus \ol{A}$ is a contradiction. (If $x$ is an interior point, a neighborhood around is is a subset of $A$. That neighborhood contains $x$, and so $x \in A \subseteq \ol{A}$.) Hence $x \in \ol{A}$, and so $\partial A \cup A^o \subseteq \ol{A}$.
+
+        Therefore $\ol{A} = \partial A \cup A^o$.        
+    \end{proof}
+
+
+    \item 
+    $X = A^o \cup \partial A \cup (A^c)^o$
+    \begin{proof}
+        We first do a manipulation of the RHS to make it easier. 
+        \begin{align*}
+            &A^o \cup \partial A \cup (A^c)^o \\
+            &A^o \cup (\ol{A} - A^o) \cup (A^c)^o \\
+            &A^o \cup \ol{A} \cup (A^c)^o \\
+            &A^o \cup A \cup A' \cup (A^c)^o \\
+            &A \cup A' \cup (A^c)^o
+        \end{align*}
+
+        First let $x \in X$. We use cases. Case 1: $x \in (A^c)^o$. Case 2: $x \notin (A^c)^o$. Then $\forall r > 0, \exists y \in B_r(x), y \in (A^c)^c$. $(A^c)^c = A$ and so $y \in A$. That's the definition of a limit point, and so then $x \in A'$. Thus in either case, $x \in A' \cup (A^c)^o$, and hence $x \in A \cup A' \cup (A^c)^o$. Therefore $X \subseteq A \cup A' \cup (A^c)^o$.
+
+        Clearly $A \cup A' \cup (A^c)^o \subseteq X$.
+
+        Therefore $X = A \cup A' \cup (A^c)^o$.        
+    \end{proof}
+\end{enumerate}
+
+\newpage % ---
+
+\textbf{3. }
+If $X = \R^2$ with the usual distance, find:
+
+\renewcommand{\labelenumi}{(\arabic{enumi})}
+\begin{enumerate}
+    \item 
+    $\partial B_1(0)$
+    \begin{solution}
+        $\{\}$
+
+    \end{solution}
+
+
+    \item 
+    $\partial(\Q \times \Q)$
+    \begin{solution}
+
+    \end{solution}
+
+
+    \item 
+    $\partial(\Z \times \Z)$
+    \begin{solution}
+
+    \end{solution}
+
+
+    \item 
+    $\partial \{(x, x) : x \in \R\}$
+    \begin{solution}
+
+    \end{solution}
+\end{enumerate}
+
+\newpage % ---
+
+\textbf{4. }
+Let
+$$A = \bigcup_{k \in \N} B_{\frac{1}{2^k}}(q_k)$$
+where $q_i$ are the elements of $\Q$.
+
+Find $\partial A$.
+
+\begin{solution}
+    
+
+\end{solution}
+
+\newpage % ---
+
+\textbf{5. } 
+Consider $\R^n$ with the usual metric. Let $A \subseteq \R^n$. Prove that $\partial A = \emptyset$ iff ($A = \R^n$ or $A = \emptyset$).
+
+\begin{proof}
+    ($\Longrightarrow$) Suppose $\partial A = \emptyset$. We have from 2.c above that $\ol{A} = \partial A \cup A^o$. That becomes $A \cup A' = \emptyset \cup A^o = A^o$; that is, the set and it's limit points are all interior points. 
+
+    Suppose for a contradiction that $A \subsetneq \R^n$ but $A \ne \emptyset$. Then $\exists a \in A$ and $\exists b \in A^c$. 
+    % why?
+    There must be a path $\gamma : [0, 1] \mapsto \R^n$ such that $\gamma(0) = a$ and $\gamma(1) = b$. 
+
+    Consider $t_c = \sup\set{t: \gamma(t) \in A}$. Then clearly $c = \gamma(t_c)$ is is some sense "on the boundary" of $A$. 
+    % TODO: add formalism
+    $c \in A'$ but $c \notin A^o$, which is a contradiction.
+
+    Therefore $A = \R^n$ or $A = \emptyset$.
+
+    ($\Longleftarrow$) Suppose $A = \R^n$ or $A = \emptyset$. We use cases.
+    
+    Case $A = \emptyset$. $\ol{\emptyset} = \emptyset^o = \emptyset$, so $\partial\emptyset = \ol{A} - A^o = \emptyset$.
+
+    Case $A = \R^n$. Again, $\ol{\R^n} = (\R^n)^o = \R^n$, so $\partial\R^n = \ol{A} - A^o = \R^n$.
+\end{proof}
+\end{document}

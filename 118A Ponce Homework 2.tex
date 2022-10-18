@@ -1,0 +1,173 @@
+\documentclass{article}
+
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath, amsthm, amssymb, hyperref}
+
+\newcommand{\R}{\mathbb{R}}  
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\bH}{\mathbb{H}}
+
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\brac}[1]{\left[ #1 \right]}
+\newcommand{\paren}[1]{\left( #1 \right)}
+
+\DeclareMathOperator{\real}{Re}
+\DeclareMathOperator{\imag}{Im}
+
+\newcommand{\comp}[2]{#1 \circ #2}
+
+\DeclareMathOperator{\dom}{dom}
+
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+\newenvironment{definition}{\begin{proof}[Definition]}{\end{proof}}
+
+% lol, lmao
+\linespread{1.1}
+\renewcommand{\baselinestretch}{1.17}
+
+% from 117
+    % \newenvironment{practice}
+    % [2]{\begin{trivlist}
+    % \item[\hskip \labelsep {\bfseries     
+    % % "debug mode": for working on it
+    % % Practice #1, Week #2.
+    % % "release mode": for submitting
+    % Week #2: Practice #1.
+    % }\hskip \labelsep]}{\end{trivlist}}
+    
+\begin{document}
+
+% 117
+% \renewcommand{\labelenumi}{(\alph{enumi})}
+
+% ------------------------------------------ %
+%                 START HERE                 %
+% ------------------------------------------ %
+
+\title{Homework 2} % Replace with appropriate title
+\author{Nathaniel Hamovitz\\Math 118A, Ponce, F22}
+\date{due 2022-10-07}
+
+\maketitle
+
+\textbf{1. } % ✅
+Prove that there exists $r \in (0, 1)$ such that
+$$\{(x, y) \in \R^2 : x^2 + y^2 = r^2\} \cap \{(x, y) \in \R^2 : x, y \in \Q\}$$
+is empty.
+
+\begin{proof}
+    Denote the set on the left by $C_r$ for each $r$ and notice that the set on the right is $\Q \times \Q$. $\Q \times \Q$ is countable, because a finite product of countable sets is countable.
+    
+    % (Although we can also describe the bijection with $\N$. Let
+    
+    But the set $\{C_r : r \in (0, 1)\}$ is uncountable, by bijection with $(0, 1)$.
+
+    Let $A_r = \{(x, y) \in \R^2 : x^2 + y^2 = r^2\} \cap \{(x, y) \in \R^2 : x, y \in \Q\}$. Suppose for a contradiction that $\forall r \in (0, 1), \exists p_r \in A_r$. Then there is a map $\psi: (0, 1) \mapsto \Q \times \Q$ defined by $r \mapsto p_r$. Note that $\psi$ is an injection. (Proof: Let $r, s \in (0, 1)$. Suppose $r \ne s$. $r = \Vert p_r \Vert$ and $s = \Vert p_s \Vert$, so $\Vert p_r \Vert \ne \Vert p_s \Vert$. If $p_r$ and $p_s$ have different norms, then clearly $p_r \ne s_r$.) But an injection from an uncountable set to a countable one is an impossibility, and so we have a contradiction.   
+\end{proof}
+
+\newpage % ---
+
+\textbf{2. } Use the notation introduced in class and in the book (see Exercise 9 and Definition 2.26 Chapter 2). Let $A, B$ be subsets of a metric space $(X, d)$. Prove of give a counter-example of the following statements:
+
+\renewcommand{\labelenumi}{(\roman{enumi})}
+
+\begin{enumerate}
+    \item % ✅
+    $(A \cup B)^o = A^o \cup B^o$
+    \begin{proof}[Counterexample]
+        Consider $A = (0, 1)$ and $B = [1, 2]$. Then $(A \cup B) = (0, 2]$ and so $(A \cup B)^o = (0, 2)$. 
+
+        But $A^o = (0, 1)$ and $B^o = (1, 2)$, so their intersection is empty.        
+    \end{proof}
+
+    \item % ✅
+    $\overline{A \cup B} = \overline{A} \cup \overline{B}$
+    \begin{proof}
+        First let $x \in \overline{A \cup B}$. Then $x \in A \cup B$ or $x \in (A \cup B)'$. In the former case, $x \in A$ or $x \in B$; in the latter, $x \in A'$ or $x \in B'$. In any case, $x$ is in one of $A$, $B$, $A'$, and $B'$, which are precisely the four sets which $\overline{A} \cup \overline{B}$ is the union of. Thus $x \in overline{A} \cup \overline{B}$.
+
+        Now let $y \in overline{A} \cup \overline{B}$. Then $y \in A \cup A' \cup B \cup B'$; and re-ordering the union gives $\overline{A \cup B}$.         
+    \end{proof}
+
+
+    \item % ✅
+    $(A \cap B)^o = A^o \cap B^o$
+    \begin{proof}
+        First let $x \in (A \cap B)^o$. $x$ is an interior point of $A \cap B$, so there is some neighborhood $N$ of $x$ such that $N \subset A \cap B$. Thus $N \subset A$ and $N \subset B$. Hence $x \in A^o$ and $x \in B^o$, respectively; and so overall $x \in A^o \cap B^o$.
+
+        Now let $y \in A^o \cap B^o$. Then $y$ is an interior point of both $A$ and $B$, so there are some neighborhoods $B_{r_1}(y)$ and $B_{r_2}(y)$ such that $B_{r_1}(y) \in A$ and $B_{r_2}(y) \in B$. Without loss of generality, suppose $r_1 \le r_2$; then $B_{r_1}(y) \subseteq B_{r_2}(y)$ and so $B_{r_1}(y) \in (A \cap B)$. Therefore $y$ is an interior point of $A \cap B$, or in other words $y \in A \cap B$.        
+    \end{proof}
+
+    \item % ✅
+    $\overline{A \cap B} = \overline{A} \cap \overline{B}$
+    \begin{proof}[Counterexample]
+        Consider $A = (0, 1)$ and $B = (1, 2)$. Then $(A \cap B) = \emptyset$ and so $\overline{(A \cap B)} = \emptyset$. But $\overline{A} = [0, 1]$ and $\overline{B} = [1, 2]$, so their intersection is $\{1\}$.
+        
+    \end{proof}
+
+\end{enumerate}
+
+\newpage % ---
+
+\textbf{3. } % ✅
+Prove that if $A \subset \R$ is bounded above, then
+$$\sup A \in \overline{A} = A \cup A'.$$
+% Rudin 2.28, p 35
+\begin{proof}
+    Let $m = \sup A$. If $m \in A$ then clearly $m \in \overline{A}$. Suppose $m \notin A$. By the definition of $\sup$, $\forall \varepsilon > 0, \exists a \in A, m - \varepsilon < a < m$. This is exactly the definition of a limit point, and hence $m \in \overline{A}$.    
+\end{proof}
+
+\newpage % ---
+
+\textbf{4. } Consider $\R^n$ with the usual metric. Prove that $A \subseteq \R^n$ is open and closed iff $A = \R^n$ or $A = \emptyset$.
+
+\begin{proof}
+    ($\Longrightarrow$) Let $A \subseteq \R^n$ such that $A$ is both open and closed. Suppose for a contradiction that $A$ is nonempty but $A \subseteq \R^n$. Then $\exists x \in A$ and $\exists y \in A^c$. 
+
+    Consider the path from $y$ to $x$ defined by $\gamma(t) = (1 - t)y + tx$, $t \in [0, 1]$. Let $s_0 = \inf\{s : \gamma(s) \in A\}$. 
+    
+    Then $\forall \varepsilon > 0, B_\varepsilon(\gamma(s_0)) \cap A^c \ne \emptyset$. (If that neighborhood were entirely in $A^c$, then $s_0$ would not be the infimum.) Then every neighborhood of $\gamma(s_0)$ contains points both in $A$ and in $A^c$. This is a contradiction.
+
+
+    ($\Longleftarrow$) % ✅
+    $\R^n$ is both open (because every neighborhood of every point in $\R^n$ is a subset of $R^n$) and closed (because every point of $\R^n$ is a limit point of $\R^n$). Now we refer to Rudin Them 2.23, which says that a set is open iff it's complement is closed, and that a set is closed iff it's complement is open. $(\R^n)^c = \emptyset$, and so $\emptyset$ is both open and closed as well.
+\end{proof}
+
+\newpage % ---
+
+\textbf{5. } % ✅
+Prove that in any metric space $(X, d)$, if $A \subseteq X$, then $\overline{(A^c)} = (A^o)^c$.
+
+\begin{proof}
+    First let $x \in \overline{A^c}$. Then $x \in A^c$ or $x \in (A^c)'$. Every interior point of a set is in that set, so if $x \in A^c$ then $x \in (A^o)^c$. If $x \in (A^c)'$, then every neighborhood of $x$ contains a point not in $A$. But then no neighborhood of $x$ is contained in $A$, and so $x \in (A^o)^c$.
+
+    Now let $y \in (A^o)^c$. Then $y$ is not an interior point of $A$, so there is no neighborhood of $y$ contained entirely within $A$. That is, every neighborhood of $y$ contains a point from $A^c$. Thus $y \in (A^c)'$ and so $y \in \overline{(A^c)}$.
+
+    Therefore $\overline{(A^c)} = (A^o)^c$.
+    
+\end{proof}
+
+
+
+
+
+
+\end{document}

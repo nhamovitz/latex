@@ -1,0 +1,162 @@
+\documentclass{article}
+
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath, amsthm, amssymb, hyperref}
+
+\newcommand{\R}{\mathbb{R}}  
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\bH}{\mathbb{H}}
+
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\brac}[1]{\left[ #1 \right]}
+\newcommand{\paren}[1]{\left( #1 \right)}
+\newcommand{\norm}[1]{\left\Vert #1 \right\Vert}
+\newcommand{\ol}[1]{\overline{#1}}
+\newcommand{\iprod}[2]{\left\langle #1, #2 \right\rangle}
+
+
+\DeclareMathOperator{\real}{Re}
+\DeclareMathOperator{\imag}{Im}
+
+\newcommand{\comp}[2]{#1 \circ #2}
+
+\DeclareMathOperator{\dom}{dom}
+
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+\newenvironment{definition}{\begin{proof}[Definition]}{\end{proof}}
+
+% lol, lmao
+\linespread{1.1}
+\renewcommand{\baselinestretch}{1.17}
+
+% from 117
+    % \newenvironment{practice}
+    % [2]{\begin{trivlist}
+    % \item[\hskip \labelsep {\bfseries     
+    % % "debug mode": for working on it
+    % % Practice #1, Week #2.
+    % % "release mode": for submitting
+    % Week #2: Practice #1.
+    % }\hskip \labelsep]}{\end{trivlist}}
+    
+\begin{document}
+
+% 117
+\renewcommand{\labelenumi}{(\alph{enumi})}
+
+% ------------------------------------------ %
+%                 START HERE                 %
+% ------------------------------------------ %
+
+\title{Homework 4} % Replace with appropriate title
+\author{Nathaniel Hamovitz\\Math 118A, Ponce, F22}
+\date{due 2022-10-25}
+
+\maketitle
+
+\textbf{1. }
+Consider $\R$ with the usual distance. Using only the definition, prove
+
+\begin{enumerate}
+    \item 
+    $A = [0, 1)$ is not compact
+    \begin{proof}
+        
+    \end{proof}
+
+
+    \item 
+    $D = \set{1 + \frac{(-1)^{n}}{n} : n \in \N}$ is compact
+    \begin{proof}
+        
+    \end{proof}
+\end{enumerate}
+
+
+\newpage % ---
+
+
+\textbf{2. }
+Prove that if $A_1, \dots, A_n, \dots$ is a countable collection of countable sets, then
+$$\bigcup_{n = 1}^{\infty} A_n \qquad \text{is also countable.}$$
+
+\begin{proof}
+    % line em up and diagonals!
+    
+\end{proof}
+
+
+\newpage % ---
+
+
+\textbf{3. }
+Consider $\R^n$ with the usual distance. Prove that if $A \subset
+% ❔: possibly-equal or strict subset?
+\R^n$ is uncountable, then $A' \ne \emptyset$ (i.e. the set of limit points of $A$ is nonempty).
+
+\begin{proof}
+    % Malik did this in OH Day 4-2, starting from the version of B-W Ponce proved in class
+
+\end{proof}
+
+
+\newpage % ---
+
+
+\textbf{4. }
+Consider $\R^2$ with the usual distance, and define
+$$E = \set{\paren{\sin(n), \cos(m)} : n, m \in \Z}$$
+
+Prove that $E' \ne \emptyset$.
+
+
+\newpage % ---
+
+
+\textbf{5. }
+Let $K_1, \dots, K_n, \dots$ be a family of compact subsets of $\R^n$ considered with the usual distance.
+\begin{enumerate}
+    \item 
+    Is $K_1 \cup K_2$ compact?
+    \begin{proof}
+        
+    \end{proof}
+
+
+    \item 
+    Is $\bigcup_{n = 1}^\infty K_n$ compact?
+    \begin{proof}
+        
+    \end{proof}
+
+
+    \item 
+    Is $\bigcap_{n = 1}^\infty K_n$ compact?
+    \begin{proof}
+        
+    \end{proof}
+\end{enumerate}
+
+
+
+
+\end{document}

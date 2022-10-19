@@ -68,9 +68,13 @@ Rudin Ch. 2, Exc. 17: Let $E$ be the set of all $x \in [0, 1]$ whose decimal exp
 
     $E$ is not dense in $[0, 1]$. Because the decimal expansions of the elements of $E$ contain only $4$ and $7$, $E \subset [0.4, 0.5) \cup [0.7, 0.8)$. Consider $0.6 \in [0, 1]$. $0.6$ is not in either of those intervals, and so could not possibly be a limit point of $E$. (To see this concretely, consider $B_{0.05}(0.6)$, which contains no elements of $E$.) Therefore $E$ is not dense in $[0, 1]$.
 
+    $E$ is compact. We are in $\R$, and in $\R^n$, any set that is closed and bounded is compact. $E$ is clearly bounded (for example, by $0$ below and $1$ above). It remains to show that $E$ is closed.
+    
+    We use the contrapositive. Suppose that $x \notin E$. Then $x = 0.a_1 a_2 \dots$ and $\exists j \in \N, a_j \notin \set{4, 7}$. Consider $\varepsilon = 10^{-(j + 2)}$. Then $B_\varepsilon(x) = (0.a_1 a_2 \dots a_j a_{j + 1}[a_{j+ 2} - 1] a_{j + 3} a_{j + 4} \dots, 0.a_1 a_2 \dots a_j a_{j + 1} [a_{j + 2} + 1] a_{j + 3} a_{j + 4} \dots)$. The $j$th digit of every digit in that ball is $a_j \notin \set{4, 7}$, and so $B_\varepsilon(x) - \set{x} \cap E = \emptyset$; thus $x$ is not a limit point of $E$. (This is a little oversimplified. To restate the idea in words: if $x \notin E$, then there is some digit of $x$ which is not 4 or 7, and you can choose some radius around $x$ such that the digits only vary in places past that non-4-or-7 digit.) No point not in $E$ is a limit point, and so $E$ is closed.
+
+    $E$ is perfect. We saw above that $E$ is closed. It remains to show that every point in $E$ is a limit point of $E$. Let $x \in E$; then $x = 0.a_1 a_2 \dots$ where $a_i \in \set{4, 7}$. Let $\varepsilon > 0$. Then $\exists n \in \N, 3 \cdot 10^{-n} < \varepsilon$. We construct the number $y = b_1 b_2 \dots$ where all $b_i = a_i$ except for $i = n$, where if $a_n = 4$ then $b_n = 7$, and if $a_n = 7$ then $b_n = 4$. Thus $y \in E$ and $\abs{x - y} = 3 \cdot 10^{-n} < \varepsilon$; that is, a ball around $x$ of any radius will contain another point in $E$.
 
 
-    % how to prove density?  
     
 \end{proof}
 
@@ -105,7 +109,7 @@ Let $(X, d)$ be a metric space. For $A \subset X$ we define its boundary $\parti
         First let $x \in \ol{A}$. 
         Because $\partial A = \ol{A} - A^o$, we have that $\partial A \cup A^o = (\ol{A} - A^o) \cup A^o$. That is, all the points in the closure except those in the interior, and also all those in the interior. Hence $x \in \partial A \cup A^o$, and so $\ol{A} \subseteq \partial A \cup A^o$.
 
-        Now let $x \in \partial A \cup A^o$. Again, this is all the points in the closure except those in the interior, and also all those in the interior. If $x \in \ol{A}$, we are done; and $x \in A^o \setminus \ol{A}$ is a contradiction. (If $x$ is an interior point, a neighborhood around is is a subset of $A$. That neighborhood contains $x$, and so $x \in A \subseteq \ol{A}$.) Hence $x \in \ol{A}$, and so $\partial A \cup A^o \subseteq \ol{A}$.
+        Now let $x \in \partial A \cup A^o$. Again, this is all the points in the closure except those in the interior, and also all those in the interior. If $x \in \ol{A}$, we are done; and $x \in A^o - \ol{A}$ is a contradiction. (If $x$ is an interior point, a neighborhood around is is a subset of $A$. That neighborhood contains $x$, and so $x \in A \subseteq \ol{A}$.) Hence $x \in \ol{A}$, and so $\partial A \cup A^o \subseteq \ol{A}$.
 
         Therefore $\ol{A} = \partial A \cup A^o$.        
     \end{proof}
@@ -141,14 +145,14 @@ If $X = \R^2$ with the usual distance, find:
     \item 
     $\partial B_1(0)$
     \begin{solution}
-        $\{\}$
-
+        $\partial B_1(0) = \ol{B_1(0)} - (B_1(0))^o$. The closure is the set $\set{(x, y) : x^2 + y^2 \le 1}$ and the interior is the ball itself, because balls are open. Thus the boundary is the sphere of radius $1$, $\set{(x, y) : x^2 + y^2 = 1}$.
     \end{solution}
 
 
     \item 
     $\partial(\Q \times \Q)$
     \begin{solution}
+        Because $\Q$ is dense in the reals, $\ol{(\Q^2)} = \R^2$. Because $\Q$ is dense in the reals, no point $q \in \Q$ is an interior point, and so $(\Q^2)^o = \emptyset$. Thus $\partial\Q^2 = \ol{\Q^2} - (\Q)^o = \R^2$.
 
     \end{solution}
 
@@ -156,6 +160,7 @@ If $X = \R^2$ with the usual distance, find:
     \item 
     $\partial(\Z \times \Z)$
     \begin{solution}
+        Because $\Z^2$ is a discrete set (every point is isolated), its closure is itself and it has no interior points. Thus $\partial \Z^2 = \ol{\Z^2} - (\Z^2)^o = \Z^2 - \emptyset = \Z^2$.
 
     \end{solution}
 
@@ -163,6 +168,9 @@ If $X = \R^2$ with the usual distance, find:
     \item 
     $\partial \{(x, x) : x \in \R\}$
     \begin{solution}
+        Let $A_4 = \set{(x, x) : x \in \R}$. Because $A_4$ is a line embedded in 2D space, its closure is itself, and it has no interior points. Thus $\partial A_4 = \ol{A_4} - A_4^o = A_4 - \emptyset = A_4$.
+
+        
 
     \end{solution}
 \end{enumerate}
@@ -177,7 +185,16 @@ where $q_i$ are the elements of $\Q$.
 Find $\partial A$.
 
 \begin{solution}
+    Because $A$ is the union of a collection of open sets, $A$ is open (by Theorem 2.24(a) in Rudin). Thus $A = A^o$. Therefore $\partial A = \ol{A} - A^o = \ol{A} - A$.
+
+    I claim that $\ol{A} = \R$. Clearly $\ol{A} \subseteq \R$.
     
+    For the other direction, first we show a lemma: for any $D, E \subseteq X$, $X \subseteq Y \Rightarrow \ol{X} \subseteq \ol{Y}$. Let $x \in \ol{X}$. We use cases. If $x \in X$, then $x \in Y$ and we are done. If $x \in X'$, then $\forall r > 0, B_r(x) - \set{x} \int X \ne \emptyset$. That is $\exists x_2 \in X, x_2 \ne x, x_2 \in B_r(x)$. Then $x_2 \in Y$ as well, satisfying all the same conditions otherwise, and so $x \in Y'$.
+
+    We know $\Q \subseteq A$ because $A$ is the union of balls around the rationals. By the lemma above, $\ol{\Q} \subseteq \ol A$. But $\ol{\Q} = \R$, and thus $\R \subseteq \ol A$. Therefore $\ol A = \R$.
+
+    Hence
+    $$\partial A = \R - A = \R - \bigcup_{k \in \N} B_{\frac{1}{2^k}}(q_k) = \bigcap_{k \in \N} (\R -  B_{\frac{1}{2^k}}(q_k))$$
 
 \end{solution}
 
@@ -187,22 +204,18 @@ Find $\partial A$.
 Consider $\R^n$ with the usual metric. Let $A \subseteq \R^n$. Prove that $\partial A = \emptyset$ iff ($A = \R^n$ or $A = \emptyset$).
 
 \begin{proof}
-    ($\Longrightarrow$) Suppose $\partial A = \emptyset$. We have from 2.c above that $\ol{A} = \partial A \cup A^o$. That becomes $A \cup A' = \emptyset \cup A^o = A^o$; that is, the set and it's limit points are all interior points. 
+    ($\Longrightarrow$) Suppose $\partial A = \emptyset$. We have from 2.c above that $\ol{A} = \partial A \cup A^o$. That becomes $A \, \cup\, A' = \emptyset\, \cup\, A^o = A^o$; that is, the set and its limit points are all interior points. 
 
     Suppose for a contradiction that $A \subsetneq \R^n$ but $A \ne \emptyset$. Then $\exists a \in A$ and $\exists b \in A^c$. 
     % why?
     There must be a path $\gamma : [0, 1] \mapsto \R^n$ such that $\gamma(0) = a$ and $\gamma(1) = b$. 
 
-    Consider $t_c = \sup\set{t: \gamma(t) \in A}$. Then clearly $c = \gamma(t_c)$ is is some sense "on the boundary" of $A$. 
+    Consider $t_c = \sup\set{t: \gamma(t) \in A}$. Then clearly $c = \gamma(t_c)$ is in some sense "on the boundary" of $A$. 
     % TODO: add formalism
     $c \in A'$ but $c \notin A^o$, which is a contradiction.
 
     Therefore $A = \R^n$ or $A = \emptyset$.
 
-    ($\Longleftarrow$) Suppose $A = \R^n$ or $A = \emptyset$. We use cases.
-    
-    Case $A = \emptyset$. $\ol{\emptyset} = \emptyset^o = \emptyset$, so $\partial\emptyset = \ol{A} - A^o = \emptyset$.
-
-    Case $A = \R^n$. Again, $\ol{\R^n} = (\R^n)^o = \R^n$, so $\partial\R^n = \ol{A} - A^o = \R^n$.
+    ($\Longleftarrow$) Suppose $A = \R^n$ or $A = \emptyset$. We use cases. If $A = \emptyset$, we have $\ol{\emptyset} = \emptyset^o = \emptyset$, so $\partial\emptyset = \ol{\emptyset} - \emptyset^o = \emptyset$. If $A = \R^n$, we have $\ol{\R^n} = (\R^n)^o = \R^n$, so $\partial\R^n = \ol{\R^n} - (\R^n)^o = \R^n$.
 \end{proof}
 \end{document}

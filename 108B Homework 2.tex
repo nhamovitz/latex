@@ -75,49 +75,70 @@
 % Chapter 6: , 1, 8, 10, 11, 14, 15, 18
 
 
-\textbf{Axler 2e, Exercise 5.18: }
+\textbf{Axler 2e, Exercise 5.18: } % ✅
 Give an example of an operator whose matrix with respect to some basis contains only 0's on the diagonal, but the operator is invertible.
 
 \begin{proof}[Solution]
-    
+    Consider
+    $$T = \begin{pmatrix}
+        0 & 1 \\
+        1 & 0
+    \end{pmatrix},$$
+    which is its own inverse.
 \end{proof}
 
 
 \newpage % ---
 
 
-\textbf{Axler 2e, Exercise 5.19: }
+\textbf{Axler 2e, Exercise 5.19: } % ✅
 Give an example of an operator whose matrix with respect to some basis contains only nonzero numbers on the diagonal, but the operator is not invertible. 
 
-
 \begin{proof}[Solution]
-    
+    Consider $$T = \begin{pmatrix}
+        1 & 1 \\
+        1 & 1
+    \end{pmatrix}.$$
+
+    $T$ is not invertible because it is not injective; note that (for example) $T(2, 0)^t = T(1, 1)^t = (2, 2)^t$.    
 \end{proof}
+
 
 \newpage % ---
 
 
 \textbf{Axler 2e, Exercise 6.1: }
-Prove that if $\vec{x}, \vec{y}$ are nonzero vectors in $\R^2$, then
-$$\iprod{\vec x}{\vec y} = \norm{x} \norm{y} \cos \theta,$$
-where $\theta$ is the angle between $\vec x$ and $\vec y$ (thinking of $\vec x$ and $\vec y$ as arrows with initial point at the origin).
+Prove that if $x, y$ are nonzero vectors in $\R^2$, then
+$$\iprod{x}{y} = \norm{x} \norm{y} \cos \theta,$$
+where $\theta$ is the angle between $ x$ and $y$ (thinking of $x$ and $y$ as arrows with initial point at the origin).
 % Hint: draw the triangle formed by x, y, and (x - y); then use the Law of Cosines
 
 \begin{proof}
-    
+    Consider the traingle formed by the vectors $x$, $y$, and $x - y$. From the Law of Cosines (remember high school geometry?) we then have that
+    $$\norm{x - y}^2 = \norm{x}^2 + \norm{y}^2 - 2 \norm{x} \norm{y} \cos \theta.$$
+
+    Applying some properties of the norm and the inner product, we see
+    \begin{align*}
+        \norm{x - y}^2 &= \norm{x}^2 + \norm{y}^2 - 2 \norm{x} \norm{y} \cos \theta \\
+        \iprod{x-y}{x-y} &= \\
+        \iprod{x}{x} - \iprod{x}{y} - \iprod{y}{x} + \iprod{y}{y} &=  \\
+        \norm{x}^2 + \norm{y}^2 - 2\iprod{x}{y} &= \norm{x}^2 + \norm{y}^2 - 2 \norm{x} \norm{y} \cos \theta\\
+        - 2\iprod{x}{y} &= - 2 \norm{x} \norm{y} \cos \theta\\
+        \iprod{x}{y} &= \norm{x} \norm{y} \cos \theta
+    \end{align*}
 \end{proof}
 
 \newpage % ---
 
-\textbf{Axler 2e, Exercise 6.8: }
-A norm on a vector space $U$ is a function $\norm{\quad}: \mathit{U} \mapsto [0, \infty)$ such that $\norm{u} = 0$ iff $u = 0$; $\norm{\alpha u} = \abs{\alpha} \norm{u}$ for all $\alpha \in \F$ and all $u \in \mathit{U}$, and $\norm{u + v} \le \norm{u} + \norm{v}$ for all $u, v \in \mathit{U}$. Prove that a norm satisfying the parallelogram equality comes from the an inner product (in other words, show that if $\norm{\quad}$ is a norm on $U$ satisfying the parellelogram equality, then there is an inner product $\iprod{\cdot}{\cdot}$ on $U$ such that $\norm{u} = \iprod{u}{u}^{\frac{1}{2}}$ for all $u \in U$).
+% \textbf{Axler 2e, Exercise 6.8: }
+% A norm on a vector space $U$ is a function $\norm{\quad}: \mathit{U} \mapsto [0, \infty)$ such that $\norm{u} = 0$ iff $u = 0$; $\norm{\alpha u} = \abs{\alpha} \norm{u}$ for all $\alpha \in \F$ and all $u \in \mathit{U}$, and $\norm{u + v} \le \norm{u} + \norm{v}$ for all $u, v \in \mathit{U}$. Prove that a norm satisfying the parallelogram equality comes from the an inner product (in other words, show that if $\norm{\quad}$ is a norm on $U$ satisfying the parellelogram equality, then there is an inner product $\iprod{\cdot}{\cdot}$ on $U$ such that $\norm{u} = \iprod{u}{u}^{\frac{1}{2}}$ for all $u \in U$).
 
-\begin{proof}
+% \begin{proof}
     
-\end{proof}
+% \end{proof}
 
 
-\newpage % ---
+% \newpage % ---
 
 
 \textbf{Axler 2e, Exercise 6.10: }
@@ -125,8 +146,22 @@ On $\mathcal{P}_2(\R)$, consider the inner product given by
 $$\iprod{p}{q} = \int_0^1 p(x) q(x) \: dx.$$
 Apply the Gram-Schmidt prodedure to the basis $(1, x, x^2)$ to produce an orthonormal basis of $\mathcal{P}_2(\R)$.
 % I think this is a worked example in 3e
+% edit: oh, no, it's a hw exercise in 3e as well. the worked example is with the integral from -1 to 1
 
 \begin{proof}[Solution]
+    Let $e_1 = \frac{v_1}{\norm{v_1}} = \frac{1}{\sqrt{\iprod{1}{1}}} = \frac{1}{\sqrt{1}} = 1$. 
+
+    Let \begin{align*}
+        e_2 &= \frac{v_2 - \iprod{v_2}{e_1}e_1}{\norm{v_2 - \iprod{v_2}{e_1}e_1}} \\
+        &= \frac{x - \iprod{x}{1}\cdot 1}{\norm{x - \iprod{x}{1} \cdot 1}} \\
+        &= \frac{x - \paren{\int_0^1 x \: dx}(1)}{\norm{x - \paren{\int_0^1 x \: dx}(1)}} \\
+        &= \frac{x - \frac{1}{2}}{\norm{x - \frac{1}{2}}} \\
+        &= \paren{x - \frac{1}{2}}\paren{\iprod{x - \frac{1}{2}}{x - \frac{1}{2}}^2x}^{-1} \\
+        &= \paren{x - \frac{1}{2}}\paren{\int_0^1 \paren{x - \frac{1}{2}}^2}^{-1} \\
+        &= 12\paren{x - \frac{1}{2}} \\
+        &= 12x - 6
+    \end{align*}
+
     
 \end{proof}
 
@@ -154,12 +189,16 @@ Find an orthonormal basis of $\mathcal{P}_2(\R)$ (with inner product as in Exerc
 \newpage % ---
 
 
-\textbf{Axler 2e, Exercise 6.15: }
+\textbf{Axler 2e, Exercise 6.15: } % ✅
 Suppose $U$ is a subspace of $V$. Prove that
 $$\dim U^\perp = \dim V - \dim U.$$
 
 \begin{proof}
-    
+    % this is 6.50 in Axler 3e, p 195
+
+    % Note: Briefly consider the case where V is not finite-dim. It's kinda nonsencical 
+
+    This follows from the facts that the direct sum of any subspace and it's orthogonal complement is the whole vector space, and that the dimension of a direct sum is the sum of the dimensions of it's components.    
 \end{proof}
 
 
@@ -168,7 +207,11 @@ $$\dim U^\perp = \dim V - \dim U.$$
 
 \textbf{Axler 2e, Exercise 6.18: }
 Prove that if $P \in \mathcal{L}(V)$ is such that $P^2 = P$ and
-$$\norm{P\vec v} \le \norm{\vec v}$$
-for every $\vec v \in V$, then $P$ is an orthogonal projection.
+$$\norm{Pv} \le \norm{v}$$
+for every $v \in V$, then $P$ is an orthogonal projection.
+
+\begin{proof}
+    Let $P \in \mathcal{L}(V)$. Suppose that $P^2 = P$ and $\forall v \in V, \norm{Pv} \le \norm{ v}$.
+\end{proof}
 
 \end{document}

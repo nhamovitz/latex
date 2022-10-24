@@ -1,0 +1,169 @@
+\documentclass{article}
+
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath, amsthm, amssymb, hyperref}
+
+\newcommand{\R}{\mathbb{R}}  
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\bH}{\mathbb{H}}
+
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\brac}[1]{\left[ #1 \right]}
+\newcommand{\paren}[1]{\left( #1 \right)}
+\newcommand{\norm}[1]{\left\Vert #1 \right\Vert}
+\newcommand{\ol}[1]{\overline{#1}}
+\newcommand{\iprod}[2]{\left\langle #1, #2 \right\rangle}
+
+
+\DeclareMathOperator{\real}{Re}
+\DeclareMathOperator{\imag}{Im}
+
+\newcommand{\comp}[2]{#1 \circ #2}
+
+\DeclareMathOperator{\dom}{dom}
+
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+\newenvironment{definition}{\begin{proof}[Definition]}{\end{proof}}
+
+% lol, lmao
+\linespread{1.1}
+\renewcommand{\baselinestretch}{1.17}
+
+% from 117
+    % \newenvironment{practice}
+    % [2]{\begin{trivlist}
+    % \item[\hskip \labelsep {\bfseries     
+    % % "debug mode": for working on it
+    % % Practice #1, Week #2.
+    % % "release mode": for submitting
+    % Week #2: Practice #1.
+    % }\hskip \labelsep]}{\end{trivlist}}
+    
+\begin{document}
+
+% 117
+\renewcommand{\labelenumi}{(\alph{enumi})}
+
+% ------------------------------------------ %
+%                 START HERE                 %
+% ------------------------------------------ %
+
+\title{Homework 5} % Replace with appropriate title
+\author{Nathaniel Hamovitz\\Math 118A, Ponce, F22}
+\date{due DUE DATE}
+
+\maketitle
+
+\textbf{1. }
+Let $(X, d)$ be a metric space. Prove that if $\set{A_\alpha : \alpha \in I}$ is a family of connected subsets of $X$ such that $\displaystyle \bigcap_{\alpha \in I} A_\alpha \ne \emptyset$, then $\displaystyle \bigcup_{\alpha \in I} A_\alpha$ is also connected.
+
+\begin{proof}
+    
+\end{proof}
+
+\newpage % ---
+
+\textbf{3. }
+Rudin, Chapter 3, Exercise 14, parts (a) - (d). If $\set{s_n}$ is a complex sequence, define its arithmetic means $\sigma_n$ by
+$$\sigma_n = \frac{s_0 + s_1 + \cdots + s_n}{n + 1}$$
+
+\begin{enumerate}
+    \item 
+    If $lim s_n = s$, prove that $\lim \sigma_n = s$.
+    \begin{proof}
+        
+    \end{proof}
+
+
+    \item 
+    Construct a sequence $\set{s_n}$ which does not converge, although $\lim \sigma_n = 0$.
+    \begin{proof}
+        
+    \end{proof}
+
+
+    \item
+    Can it happen that $s_n > 0$ for all $n$ and that $\lim \sup s_n = \infty$, although $\lim \sigma_n = 0$?
+    \begin{proof}
+        
+    \end{proof}
+
+
+    \item
+    Put $a_n = s_n - s_{n - 1}$, for $n \ge 1$. Show that
+    $$s_n - \sigma_n = \frac{1}{n + 1} \sum_{k = 1}^n k a_k.$$
+
+    Assume that $\lim (n a_n) = 0$ and that $\set{\sigma_n}$ converges. Prove that $\set{s_n}$ converges. [This gives a converse of (a), but under the additional assumption that $n a_n \to 0$.]
+\end{enumerate}
+
+
+\newpage % ---
+
+\textbf{3. }
+Define $a_1 = \sqrt{2}$ and $a_{n + 1} = \sqrt{2 a_n}$, $n \in \N$. Prove that the sequence $(a_n)_{n = 1}^\infty$ converges and find its limit.
+
+\begin{proof}
+    
+\end{proof}
+
+
+\newpage % ---
+
+
+\textbf{4. }
+Let $S = (a_n)_{n = 1}^\infty$ be a bounded real sequence. Let
+$$L_S = \set{x \in \R : \text{ exists a subsequence of } S : (a_{n_k})_{k = 1}^\infty \text{ such that } \lim_{k \to \infty} a_{n_k} = x}.$$
+
+Prove:
+\begin{enumerate}
+    \item 
+    $L_S \ne \emptyset$ is closed and bounded.
+    \begin{proof}
+        
+    \end{proof}
+
+
+    \item 
+    $L_S$ has only one point ($L_S = \set{x_0}$) if and only if the sequence $\set{a_n}_{n = 1}^\infty$ converges ($\lim_{n \to \infty} a_n = x_0$).
+    \begin{proof}
+        
+    \end{proof}
+
+
+    \item 
+    If $\alpha \in L_S$, then
+    $$\limsup_{n \to \infty} a_n = M \ge alpha.$$
+    \begin{proof}
+        
+    \end{proof}
+
+
+    \item 
+    Prove that $M \in L_S$. Hence, $M = \sup L_S$.
+    \begin{proof}
+        
+    \end{proof}
+
+\end{enumerate}
+\end{document}
+
+% suggested problems: ch 3, exc 1 2 4 6

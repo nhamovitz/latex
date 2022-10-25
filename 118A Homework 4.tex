@@ -77,17 +77,23 @@
 Consider $\R$ with the usual distance. Using only the definition, prove
 
 \begin{enumerate}
-    \item 
+    \item  % ✅
     $A = [0, 1)$ is not compact.
     \begin{proof}
+        Consider the open cover $\set{\sigma_n}_{n \in \N}$, where $\sigma_n = \paren{-\frac{1}{2}, 1 - \frac{1}{n}}$. As the infimum of each interval remains constant and the supremum is increasing we have that $\forall n \in \N, \sigma_n \subsetneq \sigma_{n + 1}$. 
         
+        Given any finite subcover $\set{\sigma_{n_i}}$, we can consider $j = \max \set{n_i}$. From above, we see that $\cup_{n_i} \sigma_{n_i} \subseteq \sigma_j$. But there must exist $x \in [0, 1)$ such that $x \notin \sigma_j$; consider $x = 1 - \frac{1}{2j}$. 
+
+        Hence there is at least one open cover of $A$ from which it is not possible to extract a finite subcover, and so $A$ is not compact.
     \end{proof}
 
 
-    \item 
-    $D = \set{1 + \frac{(-1)^{n}}{n} : n \in \N}$ is compact.
+    \item  % ✅ but could be touched up
+    $D = \set{1 + \frac{(-1)^{n}}{n} : n \in \N} \cup \set{1}$ is compact.
     \begin{proof}
-        
+        Let $\set{\sigma_alpha}_{\alpha \in I}$ be an open covering of $D$. Then there must be some open set $\sigma_0$ such that $1 \in \sigma_0$. 
+
+        $\sigma_0$ contains all but finitely many elements of $D$; each remaining element must be contained in some set $\sigma_n$. There are finitely many, so considering those $\sigma_n$ along with $\sigma_0$ gives us a finite subcovering of $D$.        
     \end{proof}
 \end{enumerate}
 
@@ -116,6 +122,8 @@ Consider $\R^n$ with the usual distance. Prove that if $A \subset
 \begin{proof}
     % Malik did this in OH Day 4-2, starting from the version of B-W Ponce proved in class
 
+    First we place an open ball of radius $1$ around every rational. 
+
 \end{proof}
 
 
@@ -127,6 +135,14 @@ Consider $\R^2$ with the usual distance, and define
 $$E = \set{\paren{\sin(n), \cos(m)} : n, m \in \Z}$$
 
 Prove that $E' \ne \emptyset$.
+
+\begin{proof}
+    Let $B = [-1, 1] \times [-1, 1]$. Clearly $E \subsetneq B$. $B$ is closed and bounded in $\R^2$ and so by Heine-Borel compact.
+
+    Consider the function $f : \N \mapsto \R^2$ where $f(n) = \paren{\sin n, \cos 0} = \paren{\sin n, 1}$. $f$ is an injective map because $\sin a = \sin b$ iff $a - b = 2 \pi k$ for some $k \in \Z$, and no natural numbers are a multiple of $2\pi$ apart (if two were, then $\pi$ could be written as a rational number). Therefore $f[\N]$ is infinite. Now notice that $f[\N] \subsetneq E$, and hence $E$ is infinite.
+
+    We now apply the Bolzano-Weierstrass theorem. $E$ is an infinite set and a subset of a compact set, and therefore $E' \ne \emptyset$.    
+\end{proof}
 
 
 \newpage % ---

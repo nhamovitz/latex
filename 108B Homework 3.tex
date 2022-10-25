@@ -27,6 +27,7 @@
 \newcommand{\comp}[2]{#1 \circ #2}
 
 \DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\range}{range}
 
 \newenvironment{theorem}[2][Theorem]{\begin{trivlist}
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
@@ -75,10 +76,13 @@
 
 % Axler second edition, chapter 6: 19, 25, 26, 30, 31.
 
-\textbf{Axler 2e, Exercise 19: }
+\textbf{Axler 2e, Exercise 6.19: }
 Suppose $T \in \mathcal{L}(V)$ and $U$ is a subspace of $V$. Prove that $U$ is invariant under $T$ iff $P_U T P_U = T P_U$.
 
 \begin{proof}
+    ($\Longrightarrow$) Suppose that $U$ is invariant under $T$. Then $\forall u \in U, Tu \in U$. Let $v \in V$. Then $v = u + u'$ where $u \in U$ and $u' \in U^\perp$. By the definition of the orthogonal projection, $P_U v = u$. Because $U$ is invariant under $T$, $T u = u$. And because $u \in U$, $P_U$ is the identity. Thus the action of $P_U T P_U$ and $T P_U$ is the same for all $v \in V$. 
+
+    ($\Longleftarrow$) Suppose that $P_U T P_U $
     
 \end{proof}
 
@@ -86,7 +90,7 @@ Suppose $T \in \mathcal{L}(V)$ and $U$ is a subspace of $V$. Prove that $U$ is i
 \newpage % ---
 
 
-\textbf{Axler 2e, Exercise 25: }
+\textbf{Axler 2e, Exercise 6.25: }
 Find a polynomial $q \in \mathcal{P}_2(\R)$ such that
 $$\int_0^1 p(x) \cos(\pi x) \: dx = \int_0^1 p(x) q(x) \: dx$$
 for every $p \in \mathcal{P}_2(\R)$.
@@ -99,7 +103,7 @@ for every $p \in \mathcal{P}_2(\R)$.
 \newpage % ---
 
 
-\textbf{Axler 2e, Exercise 26: }
+\textbf{Axler 2e, Exercise 6.26: }
 Fix a vector $v \in V$ and define $T \in \mathcal{L}(V, \F)$ by $Tu = \iprod{u}{v}$. For $a \in \F$, find a formula for $T^* a$.
 
 \begin{proof}
@@ -110,19 +114,19 @@ Fix a vector $v \in V$ and define $T \in \mathcal{L}(V, \F)$ by $Tu = \iprod{u}{
 \newpage % ---
 
 
-\textbf{Axler 2e, Exercise 30: }
+\textbf{Axler 2e, Exercise 6.30: }
 Suppose $T \in \mathcal{L}(V, W)$. Prove that
 
 \begin{enumerate}
     \item 
-    $T$ is injective iff $T^*$ is surjective
+    $T$ is injective iff $T^*$ is surjective.
     \begin{proof}
         
     \end{proof}
 
 
     \item 
-    $T$ is surjective iff $T*$ is injective
+    $T$ is surjective iff $T*$ is injective.
     \begin{proof}
         
     \end{proof}
@@ -132,7 +136,7 @@ Suppose $T \in \mathcal{L}(V, W)$. Prove that
 \newpage % ---
 
 
-\textbf{Axler 2e, Exercise 31: }
+\textbf{Axler 2e, Exercise 6.31: }
 Prove that
 $$\dim \null T^* = \dim \null T + \dim W - \dim V$$
 and

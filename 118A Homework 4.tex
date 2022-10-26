@@ -91,7 +91,7 @@ Consider $\R$ with the usual distance. Using only the definition, prove
     \item  % ✅ but could be touched up
     $D = \set{1 + \frac{(-1)^{n}}{n} : n \in \N} \cup \set{1}$ is compact.
     \begin{proof}
-        Let $\set{\sigma_alpha}_{\alpha \in I}$ be an open covering of $D$. Then there must be some open set $\sigma_0$ such that $1 \in \sigma_0$. 
+        Let $\set{\sigma_\alpha}_{\alpha \in I}$ be an open covering of $D$. Then there must be some open set $\sigma_0$ such that $1 \in \sigma_0$. 
 
         $\sigma_0$ contains all but finitely many elements of $D$; each remaining element must be contained in some set $\sigma_n$. There are finitely many, so considering those $\sigma_n$ along with $\sigma_0$ gives us a finite subcovering of $D$.        
     \end{proof}
@@ -101,20 +101,44 @@ Consider $\R$ with the usual distance. Using only the definition, prove
 \newpage % ---
 
 
-\textbf{2. }
+\textbf{2. }  % ✅
 Prove that if $A_1, \dots, A_n, \dots$ is a countable collection of countable sets, then
 $$\bigcup_{n = 1}^{\infty} A_n \qquad \text{is also countable.}$$
 
 \begin{proof}
     % line em up and diagonals!
+    % Diagonals!! I don't want to draw the picture!!
+    % you can also do a hilbert curve! (is that what it's called?)
+
+    Let $\displaystyle U = \bigcup_{n = 1}^\infty A_n$.
     
+    Write each $A_n$ in a row, like so (here the exponent is index within each set):
+    \begin{align*}
+        A_1 &= \set{a_1^1, a_1^2, a_1^3, \dots, a_1^n, \dots} \\
+        A_2 &= \set{a_2^1, a_2^2, a_2^3, \dots, a_2^n, \dots} \\
+        A_3 &= \set{a_3^1, a_3^2, a_3^3, \dots, a_3^n, \dots}
+    \end{align*}
+    
+    Now consider the function/sequence $f: \N \mapsto U$ constructed by drawing arrows from top right to bottom left, so that (for example)
+    
+    \begin{align*}
+        f(1) &= a_1^1 \\
+        f(2) &= a_1^2 \\
+        f(3) &= a_2^1 \\
+        f(4) &= a_1^3 \\
+        f(5) &= a_2^2 \\
+        f(6) &= a_3^1
+    \end{align*}
+    
+    and so on. Then $f$ puts $U$ in bijection with the naturals, and so $U$ is countable. (Note that for it to be a true bijection, you must skip any $a_i^j$ you have previously encountered when constructing the sequence.)
 \end{proof}
+
 
 
 \newpage % ---
 
 
-\textbf{3. }
+\textbf{3. } % ✅
 Consider $\R^n$ with the usual distance. Prove that if $A \subset
 % ❔: possibly-equal or strict subset?
 \R^n$ is uncountable, then $A' \ne \emptyset$ (i.e. the set of limit points of $A$ is nonempty).
@@ -122,15 +146,32 @@ Consider $\R^n$ with the usual distance. Prove that if $A \subset
 \begin{proof}
     % Malik did this in OH Day 4-2, starting from the version of B-W Ponce proved in class
 
-    First we place an open ball of radius $1$ around every rational. 
+    First we place an open ball of radius $1$ around every rational. Clearly their union is the whole space; that is,
+    $$\R^n = \bigcup_{n = 1}^\infty B_1(q_n)$$
+    where $\Q^n = \bigcup_{n = 1}^\infty \set{q_n}$.
 
+    Suppose for a contradiction that $A \cap B_1(q_n)$ is finite for all $n \in N$. Note that 
+    \begin{align*}
+        A &= A \bigcap \R^n \\
+        &= A \bigcap \brac{\bigcup_{n = 1}^\infty B_1(q_n)} \\
+        &= \bigcup_{n = 1}^\infty \brac{A \bigcap B_1(q_n)},
+    \end{align*}
+    which is the countable union of finite sets. By the previous problem, that implies $A$ is finite or countable. However, we know $A$ is uncountable, and so we have a contradiction. Hence there must exist $n_0 \in \N$ such that $A \cap B_1(q_n)$ is infinite (in fact, that it is uncountable).
+
+    Note that
+    $$A \cap B_1(q_{n_0}) \subseteq B_1(q_{n_0}) \subsetneq \ol{B_1(q_{n_0})}.$$
+    Then by Bolzano-Weierstrass $(A \cap B_1(q_{n_0}))' \ne \emptyset$.
+
+    We now prove a lemma: for any sets $A, B \subseteq X$, $A \subseteq B$ implies $A' \subseteq B'$. Let $x \in A'$. Then $\forall r > 0, B_r(x) \cap A - \set{x} \ne \emptyset$. Because $A \subseteq B$, $B_r(x) \cap A \subseteq B_r(x) \cap B$ and so we have $\forall r > 0, B_r(x) \cap B - \set{x} \ne \emptyset$. Thus $x \in B'$ and $A' \subseteq B'$.
+
+    Now note that $A \cap B_1(q_{n_0}) \subseteq A$, so by the above lemma $(A \cap B_1(q_{n_0}))' \subseteq A'$. The smaller set is nonempty and so the larger must be as well; $A' \ne \emptyset$.
 \end{proof}
 
 
 \newpage % ---
 
 
-\textbf{4. }
+\textbf{4. } % ✅
 Consider $\R^2$ with the usual distance, and define
 $$E = \set{\paren{\sin(n), \cos(m)} : n, m \in \Z}$$
 
@@ -148,27 +189,45 @@ Prove that $E' \ne \emptyset$.
 \newpage % ---
 
 
-\textbf{5. }
+\textbf{5. } % ✅ 
+% ❗ could elaborate on (c) though
 Let $K_1, \dots, K_n, \dots$ be a family of compact subsets of $\R^n$ considered with the usual distance.
 \begin{enumerate}
-    \item 
+    \item  % ✅
     Is $K_1 \cup K_2$ compact?
+
+    Yes.
     \begin{proof}
-        
+        Let $\set{\sigma_\alpha}_{\alpha \in I}$ be an open covering of $K_1 \cup K_2$. Because $K_1$ and $K_2$ are both compact, it is possible to extract finite subcoverings $\set{\sigma_{\alpha_i}}_{i = 1}^N$ and $\set{\sigma_{\alpha_j}}_{j = 1}^M$ such that $\displaystyle K_1 \subseteq \cup_{i = 1}^N \sigma_{\alpha_i}$ and $\displaystyle K_2 \subseteq \cup_{j = 1}^M \sigma_{\alpha_j}$. Thus
+        $$\displaystyle K_1 \cup K_2 \subseteq \brac{\cup_{i = 1}^N \sigma_{\alpha_i}} \cup \brac{\cup_{j = 1}^M \sigma_{\alpha_j}}$$
+        and as both those collections are finite, so is their union.
     \end{proof}
 
 
-    \item 
+    \item % ✅
     Is $\bigcup_{n = 1}^\infty K_n$ compact?
+
+    No.
     \begin{proof}
+        Consider $K_n = \ol{B_1(q_n)}$, where $\Q^n = {q_1, q_2, \dots}$. Each $K_n$ is closed and bounded, and thus compact, but their union is $\R^n$, which is open and not bounded and so not compact.
         
     \end{proof}
 
 
     \item 
     Is $\bigcap_{n = 1}^\infty K_n$ compact?
+
+    Yes.
     \begin{proof}
+        (A more general proof using the definition of compactness is possible, but if we restrict ourself to $\R^n$, the proof becomes simple.)
+
+        Each $K_n$ is closed and bounded, because it is compact.
         
+        By definition of boundedness, $\exists x \in \R^n, \exists M \in \R, K_1 \subseteq B_M(x)$. By definition of intersection, $\cap_{n = 1}^\infty K_n \subseteq K_1 \subseteq B_M(x)$ and hence the intersection is bounded.
+
+        The intersection, including the infinite intersection, of closed sets is closed; hence $\cap_{n = 1}^\infty K_n$ is closed.
+
+        Therefore by Heine-Borel $\cap_{n = 1}^\infty K_n$ is compact.        
     \end{proof}
 \end{enumerate}
 

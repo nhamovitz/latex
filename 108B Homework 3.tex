@@ -28,6 +28,7 @@
 
 \DeclareMathOperator{\dom}{dom}
 \DeclareMathOperator{\range}{range}
+\DeclareMathOperator{\nulle}{null}
 
 \newenvironment{theorem}[2][Theorem]{\begin{trivlist}
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
@@ -70,60 +71,83 @@
 
 \title{Homework 3} % Replace with appropriate title
 \author{Nathaniel Hamovitz\\Math 108B, Sung, F22}
-\date{due 2022-10-27}
+\date{due 2022-10-31}
 
 \maketitle
 
 % Axler second edition, chapter 6: 19, 25, 26, 30, 31.
 
-\textbf{Axler 2e, Exercise 6.19: }
+\textbf{Axler 2e, Exercise 6.19: } % ✅
 Suppose $T \in \mathcal{L}(V)$ and $U$ is a subspace of $V$. Prove that $U$ is invariant under $T$ iff $P_U T P_U = T P_U$.
 
 \begin{proof}
     ($\Longrightarrow$) Suppose that $U$ is invariant under $T$. Then $\forall u \in U, Tu \in U$. Let $v \in V$. Then $v = u + u'$ where $u \in U$ and $u' \in U^\perp$. By the definition of the orthogonal projection, $P_U v = u$. Because $U$ is invariant under $T$, $T u = u$. And because $u \in U$, $P_U$ is the identity. Thus the action of $P_U T P_U$ and $T P_U$ is the same for all $v \in V$. 
 
-    ($\Longleftarrow$) Suppose that $P_U T P_U $
-    
+    ($\Longleftarrow$) Suppose that $P_U T P_U  = T P_U$. 
+    % my attempt
+    % Then $P_U T = T$. For all $v = u + u' \in V = U \oplus U^\perp$, $P_U v = u$. Hence $P_U (Tv) = P_U(Tu + T u')$ and also 
+    Let $u \in U$. Then $P_U u = u \in U$ and so $P_U(T u) = Tu$. Hence $Tu \in U$, and therefore $U$ is invariant under $T$.    
 \end{proof}
 
 
 \newpage % ---
 
 
-\textbf{Axler 2e, Exercise 6.25: }
+\textbf{Axler 2e, Exercise 6.25: } % ✅
 Find a polynomial $q \in \mathcal{P}_2(\R)$ such that
 $$\int_0^1 p(x) \cos(\pi x) \: dx = \int_0^1 p(x) q(x) \: dx$$
 for every $p \in \mathcal{P}_2(\R)$.
 
 \begin{proof}
     % 3e Thm 6.42 and Ex 6.44, p 188
-    
+    Because of the properties of the integral, $\phi : \mathcal{P}_2(\R) \mapsto \R$ defined by $\phi(p) = \int_0^1 p(x) \cos(\pi x) \: dx$ is a linear functional on $\mathcal{P}_2(\R)$. Therefore, by the Riesz Representation Theorem, there must exist some vector (polynomial) $q \in \mathcal{P}_2(\R)$ such that $\phi(p) = \iprod{p}{q}$. We can define the inner product as the integral from 0 to 1 of the product of the two polynomials; now the question asks us to find the $q$ which Riesz says must exist. 
+
+    Luckily, Riesz also tells us a formula for such a $q$! Starting from an orthonormal basis $e_1, \dots, e_n$, we have $q = \ol{\phi(e_1)} e_1 + \cdots + \ol{\phi(e_n)}e_n$; as we are dealing only with the reals here, we simplify to
+    $$q = \phi(e_1)e_1 + \cdots + \phi(e_n) e_n.$$
+
+    We found an orthonormal basis for $\mathcal{P}_2(\R)$ in the previous homework:
+    \begin{align*}
+        e_1 &= 1 \\
+        e_2 &= \sqrt{3}(2x - 1) \\
+        e_2 &= \sqrt{5}(6x^2 - 6x + 1)
+    \end{align*}
+
+    The final answer is
+    $$q(x) = \frac{12 - 24x}{\pi^2}$$
 \end{proof}
 
 
 \newpage % ---
 
 
-\textbf{Axler 2e, Exercise 6.26: }
+\textbf{Axler 2e, Exercise 6.26: } % ✅
 Fix a vector $v \in V$ and define $T \in \mathcal{L}(V, \F)$ by $Tu = \iprod{u}{v}$. For $a \in \F$, find a formula for $T^* a$.
 
 \begin{proof}
-    
+    $T^* \in \mathcal{L}(\F, V)$ is defined as the operator such that $\iprod{Tu}{a} = {u, T^* a}$. We manipulate:
+    \begin{align*}
+        \iprod{Tu}{a} &= \iprod{u}{T^* a} \\
+        \iprod{\iprod{u}{v}}{a} &= \\
+        \iprod{u}{v}\ol{a} &= \\
+        \iprod{\ol{a}u}{v} &= \\
+        \ol{a} \iprod{u}{v} &= \\
+        \iprod{u}{av} &= \iprod{u}{T^* a}
+    \end{align*}
+    and so $T^* a = av$.    
 \end{proof}
 
 
 \newpage % ---
 
 
-\textbf{Axler 2e, Exercise 6.30: }
+\textbf{Axler 2e, Exercise 6.30: } % ✅
 Suppose $T \in \mathcal{L}(V, W)$. Prove that
 
 \begin{enumerate}
     \item 
     $T$ is injective iff $T^*$ is surjective.
     \begin{proof}
-        ($\Longrightarrow$) Suppose $T$ is injective. Then $\forall u, v \in V, u \ne v \Rightarrow Tu \ne Tv$.
-
+        $T$ is injective iff $\nulle T = \set{0}$ (by Axler 3e Thm 3.16). But $\nulle T = (\range T^*)^\perp$, so we have $(\range T^*)^\perp = \set{0}$. That is the case iff $\range T^* = W$, which is equivalent to $T^*$ being surjective.
         Therefore $T^*$ is surjective.
     \end{proof}
 
@@ -131,7 +155,7 @@ Suppose $T \in \mathcal{L}(V, W)$. Prove that
     \item 
     $T$ is surjective iff $T*$ is injective.
     \begin{proof}
-        
+        Replace $T$ above with $T^*$.        
     \end{proof}
 \end{enumerate}
 
@@ -140,13 +164,20 @@ Suppose $T \in \mathcal{L}(V, W)$. Prove that
 
 
 \textbf{Axler 2e, Exercise 6.31: }
-Prove that
-$$\dim \null T^* = \dim \null T + \dim W - \dim V$$
-and
-$$\dim \range T^* = \dim \range T$$
-for every $T \in \mathcal{L}(V, W)$.
+For every $T \in \mathcal{L}(V, W)$, prove that
+$$\dim \nulle T^* = \dim \nulle T + \dim W - \dim V$$
 \begin{proof}
-    
+    Note that by the Fundamental Theorem of Linear Maps (Axler 3e Thm 3.22), $\dim \nulle T* = \dim W - \dim \range T^*$. Thus it remains to show that $\dim \range T^* = \dim V - \dim \nulle T$; to do so, notice that $\range T^* = (\nulle T)^\perp$ and clearly $\dim (\nulle T)^\perp = \dim V - \dim \nulle T$.
+\end{proof}
+
+\textbf{and}
+$$\dim \range T^* = \dim \range T.$$
+\begin{proof}
+    \begin{align*}
+        \dim V - \dim \nulle T &= \dim \range T \\
+        \dim (\nulle T)^\perp &= \dim \range T \\
+        \dim \range T^* &= \dim \range T
+    \end{align*}    
 \end{proof}
 
 

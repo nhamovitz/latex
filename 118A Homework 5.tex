@@ -69,7 +69,7 @@
 
 \title{Homework 5} % Replace with appropriate title
 \author{Nathaniel Hamovitz\\Math 118A, Ponce, F22}
-\date{due DUE DATE}
+\date{due 2022-11-06}
 
 \maketitle
 
@@ -82,13 +82,14 @@ Let $(X, d)$ be a metric space. Prove that if $\set{A_\alpha : \alpha \in I}$ is
 
 \newpage % ---
 
-\textbf{3. }
+
+\textbf{2. }
 Rudin, Chapter 3, Exercise 14, parts (a) - (d). If $\set{s_n}$ is a complex sequence, define its arithmetic means $\sigma_n$ by
 $$\sigma_n = \frac{s_0 + s_1 + \cdots + s_n}{n + 1}$$
 
 \begin{enumerate}
     \item 
-    If $lim s_n = s$, prove that $\lim \sigma_n = s$.
+    If $\lim s_n = s$, prove that $\lim \sigma_n = s$.
     \begin{proof}
         
     \end{proof}
@@ -145,13 +146,20 @@ Prove:
     \item 
     $L_S$ has only one point ($L_S = \set{x_0}$) if and only if the sequence $\set{a_n}_{n = 1}^\infty$ converges ($\lim_{n \to \infty} a_n = x_0$).
     \begin{proof}
-        
+
+        % ⇒: see pic
+
+
+        % ⇐ Contrapositive: suppose L_S has more than one point (call two x_0 and y_0). Let d = |x_0 - y_0|. Let \epsilon = d/4. Then there are infinitely many points within epsilon of y_0, which means they are not within epsilon of x_0. 
+        % actually contradiction works better: Let lim a_n = x. Suppose for cont that L_s has more than one point. then above. 
+        % % Likewise for x_0 and y_0. Thus not convergent anywhere. 
+        % Thus x_0 is not the limit. Consider any other point z_0. Let d = distance between x_0 and z_0. Epsilon = d/4 again. Infinitely many close to x_0, so z_0 not a limit. 
     \end{proof}
 
 
     \item 
     If $\alpha \in L_S$, then
-    $$\limsup_{n \to \infty} a_n = M \ge alpha.$$
+    $$\limsup_{n \to \infty} a_n = M \ge \alpha.$$
     \begin{proof}
         
     \end{proof}
@@ -160,7 +168,7 @@ Prove:
     \item 
     Prove that $M \in L_S$. Hence, $M = \sup L_S$.
     \begin{proof}
-        
+        From above, we know the set is closed. Therefore it must contain its supremum. (This is a result from above). 
     \end{proof}
 
 \end{enumerate}

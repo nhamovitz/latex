@@ -19,6 +19,8 @@
 \newcommand{\norm}[1]{\left\Vert #1 \right\Vert}
 \newcommand{\ol}[1]{\overline{#1}}
 \newcommand{\iprod}[2]{\left\langle #1, #2 \right\rangle}
+\newcommand{\lmap}[1]{\mathcal{L}\paren{#1}}
+\newcommand{\lmapp}[2]{\mathcal{L}\paren{#1, #2}}
 
 
 \DeclareMathOperator{\real}{Re}
@@ -27,19 +29,6 @@
 \newcommand{\comp}[2]{#1 \circ #2}
 
 \DeclareMathOperator{\dom}{dom}
-
-\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
-\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
-\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
-\newenvironment{problem}[2][Problem]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
-\newenvironment{question}[2][Question]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
-\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
 
 \newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
 \newenvironment{definition}{\begin{proof}[Definition]}{\end{proof}}
@@ -75,8 +64,55 @@
 
 % Axler 2e, Ch 7, Problems 4, 21, 23, 29, 30
 
-\textbf{Axler 2e: }
+\textbf{1. }
+Fix a field $k$. Given $k$-vector spaces $U$, $V$, and $W$, and $k$-linear maps $f: U \mapsto V$ and $G: V \mapsto W$, the diagram
+$$0 \longrightarrow U \longrightarrow^{f}$$
 
+% ---
+
+\textbf{Axler 2e, Exercise 7.4}
+Suppose $P \in \lmap{V}$ is such that $P^2 = P$. Prove that $P$ is an orthogonal projection iff $P$ is self-adjoint.
+\begin{proof}
+    
+\end{proof}
+
+% ---
+
+\textbf{Axler 2e, Exercise 7.21}
+Prove or give a counterexample: if $S \in \lmap{V}$ and there exists an orthogonal basis $(e_1, \dots, e_n)$ of $V$ such that $\norm{S e_j} = 1$ for each $e_j$, then $S$ is an isometry.
+\begin{proof}%[Counterexample]
+    
+\end{proof}
+
+% ---
+
+\textbf{Axler 2e, Exercise 7.23}
+Define $T \in \lmap{\F^3}$ by
+$$T(z_1, z_2, z_3) = (z_3, 2_z1, 3z_2).$$
+
+Find (explicitly) an isometry $S \in \lmap{\F^3}$ such that $T = S\sqrt{T^* T}$.
+
+\begin{proof}[Consider]
+    
+\end{proof}
+
+% ---
+
+\textbf{Axler 2e, Exercise 7.29}
+Suppose $T \in \lmap{V}$. Prove that $\dim \range T$ equals the number of nonzero singular values of $T$.
+
+\begin{proof}
+    
+\end{proof}
+
+% ---
+
+\textbf{Axler 2e, Exercise 7.30}
+Suppose $S \in \lmap{V}$. Prove that $S$ is an isometry iff all the singular values of $S$ equal $1$.
+
+\begin{proof}
+    
+\end{proof}
 
 
 

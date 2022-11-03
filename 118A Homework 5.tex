@@ -28,19 +28,6 @@
 
 \DeclareMathOperator{\dom}{dom}
 
-\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
-\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
-\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
-\newenvironment{problem}[2][Problem]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
-\newenvironment{question}[2][Question]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
-\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
-
 \newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
 \newenvironment{definition}{\begin{proof}[Definition]}{\end{proof}}
 
@@ -123,6 +110,9 @@ $$\sigma_n = \frac{s_0 + s_1 + \cdots + s_n}{n + 1}$$
 Define $a_1 = \sqrt{2}$ and $a_{n + 1} = \sqrt{2 a_n}$, $n \in \N$. Prove that the sequence $(a_n)_{n = 1}^\infty$ converges and find its limit.
 
 \begin{proof}
+    First we show with induction that $\forall n \in N$, $a_n < 2$. For the base case, clearly $a_1 = \sqrt{2} < 2$. Now suppose that $a_n < 2$. Then $\sqrt{a_n} < \sqrt{2}$. We have $a_{n + 1} = \sqrt{2 a_n} = \sqrt{2} \cdot \sqrt{a_n}$. Because $\sqrt{a_n} < \sqrt{2}$, we see that $a_{n + 1} < \sqrt{2}^2 = 2$. 
+
+    Now we show that 
     
 \end{proof}
 

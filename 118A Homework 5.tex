@@ -72,12 +72,13 @@ Let $(X, d)$ be a metric space. Prove that if $\set{A_\alpha : \alpha \in I}$ is
 
 \textbf{2. }
 Rudin, Chapter 3, Exercise 14, parts (a) - (d). If $\set{s_n}$ is a complex sequence, define its arithmetic means $\sigma_n$ by
-$$\sigma_n = \frac{s_0 + s_1 + \cdots + s_n}{n + 1}$$
+$$\sigma_n = \frac{s_0 + s_1 + \cdots + s_n}{n + 1}.$$
 
 \begin{enumerate}
     \item 
     If $\lim s_n = s$, prove that $\lim \sigma_n = s$.
     \begin{proof}
+        By definition of limit, $\forall \varepsilon > 0, \exists N \in \N, n > N \Rightarrow d(s_n, s) < \varepsilon$. 
         
     \end{proof}
 
@@ -110,10 +111,20 @@ $$\sigma_n = \frac{s_0 + s_1 + \cdots + s_n}{n + 1}$$
 Define $a_1 = \sqrt{2}$ and $a_{n + 1} = \sqrt{2 a_n}$, $n \in \N$. Prove that the sequence $(a_n)_{n = 1}^\infty$ converges and find its limit.
 
 \begin{proof}
-    First we show with induction that $\forall n \in N$, $a_n < 2$. For the base case, clearly $a_1 = \sqrt{2} < 2$. Now suppose that $a_n < 2$. Then $\sqrt{a_n} < \sqrt{2}$. We have $a_{n + 1} = \sqrt{2 a_n} = \sqrt{2} \cdot \sqrt{a_n}$. Because $\sqrt{a_n} < \sqrt{2}$, we see that $a_{n + 1} < \sqrt{2}^2 = 2$. 
+    % First we show with induction that $\forall n \in N$, $a_n < 2$. For the base case, clearly $a_1 = \sqrt{2} < 2$. Now suppose that $a_n < 2$. Then $\sqrt{a_n} < \sqrt{2}$. We have $a_{n + 1} = \sqrt{2 a_n} = \sqrt{2} \cdot \sqrt{a_n}$. Because $\sqrt{a_n} < \sqrt{2}$, we see that $a_{n + 1} < \sqrt{2}^2 = 2$. 
 
-    Now we show that 
+    % Now we show that 
     
+
+    Note that 
+    \begin{align*}
+        a_1 &= \sqrt{2} &= \sqrt{2} &= 2^{\frac{1}{2}}  &= 2^{\frac{1}{2}} \\
+        a_2 &= \sqrt{2 \sqrt{2}} &= \sqrt{2} \sqrt{\sqrt{2}} &= 2^{\frac{1}{2}} \cdot 2^{\frac{1}{4}} &= 2^{\frac{1}{2} + \frac{1}{4}} \\
+        a_3 &= \sqrt{2\sqrt{2 \sqrt{2}}} &= \sqrt{2} \sqrt{\sqrt{2}} \sqrt{\sqrt{\sqrt{2}}} &= 2^{\frac{1}{2}} \cdot 2^{\frac{1}{4}} \cdot 2^{\frac{1}{8}} &= 2^{\frac{1}{2} + \frac{1}{4} + \frac{1}{8}} \\
+        a_n &= 2^{\sum_{j = 1}^n \paren{\frac{1}{2}}^j}
+    \end{align*}
+
+    That's a geometric series which sums to $1$, and thus the limit is $2^1 = 2$. I know we haven't learned series yet in this course, but this was my first instinct and I think it's a cool way of doing it.
 \end{proof}
 
 
@@ -129,6 +140,17 @@ Prove:
     \item 
     $L_S \ne \emptyset$ is closed and bounded.
     \begin{proof}
+        First, that $L_S \ne \emptyset$.
+
+        Let $C = \set{a_n : n \in \N}$. We use cases. Case 1: $C$ is finite; that is, $C = \set{p_1, p_2, \dots, p_k}$. Note that $C$ is the image of the naturals under the function $n \mapsto a_n$, and so by pigeonhole principle, $\exists i_0 \in \set{1, \dots, k}$ such that $a_n = p_{i_0}$ for infinitely many $n$. This defines a convergent subsequence, and hence $p_{i_0} \in L_S$; therefore $L_S \ne \emptyset$.
+
+        Case 2: $C$ is infinite. Note that $C$ must be bounded, because $S$ is bounded. That is, $\exists R > 0, C \subseteq B_R(0)$. That ball is compact (by Heine-Borel) and thus $\exists x_0 \in C'$. By definition, $\forall r > 0, B_r(x_0) \cap C - \set{x_0} \ne \emptyset$. That is equivalent to $\forall k \in \N, B_{\frac{1}{k}}(x_0) \cap C - \set{x_0} \ne \emptyset$. (For the forward direction, $\frac{1}{k}$ is a radius greater than $0$; for the backwards, note that $\forall r > 0, \exists k \in \N, r > \frac{1}{k}$.) Now define a subsequence $(a_{n_k})$ such that for each $k$, $a_{n_k}$ is the point in $C$ guaranteed to exists within the ball of radius $\frac{1}{k}$ around $x_0$ by the above. Then $\lim a_{n_k} = x_0$ and hence $x_0 \in L_S$. 
+
+        Step 2: $L_S$ is bounded.
+
+        Since $C$ is bounded, $\exists k > 0, \forall n \in \N, \abs{a_n} \le k$. Take some $x \in L_S$. Then $x = \lim a_{n_j}$ for some subsequence of $S$. Taking the absolute value, $\abs{x} = \abs{\lim a_{n_j}} = \lim \abs{a_{n_j}} \le k$. Thus $x \in \ol{B_k(0)}$ and so $L_S \subseteq \ol{B_k(0)}$, and therefore $L_S$ is bounded.
+
+        Step 3: $L_S$ is closed. If $L_S' = \emptyset$, then $L_S$ is closed. Thus let $x \in L_S'$. Then $\forall r > 0, B_r(x_0) \cap L_S - \set{x_0} \ne \emptyset$. As we saw above, this is equivalent to $\forall n \in \N, B_{\frac{1}{n}}(x_0) \cap L_S - \set{x_0} \ne \emptyset$. That is, $\forall n \in \N, \exists x_n \in L_S, x_n \in B_{\frac{1}{n}}(x_0), x_n \ne x_0$. Now we construct a subsequence of $S$: for each $n$, find $a_{k_n}$ such that $d(x_n, a_{k_n}) < \frac{1}{n}$. Then $\lim a_{n_k} = x_0$ because $d(a_{n_k}, x_0) \le d(a_{k_n}, x_n) + d(x_n, x_0)$. Both the latter distances are less than $\frac{1}{n}$, and so their sum is at most $\frac{2}{n}$
         
     \end{proof}
 
@@ -144,7 +166,13 @@ Prove:
         % actually contradiction works better: Let lim a_n = x. Suppose for cont that L_s has more than one point. then above. 
         % % Likewise for x_0 and y_0. Thus not convergent anywhere. 
         % Thus x_0 is not the limit. Consider any other point z_0. Let d = distance between x_0 and z_0. Epsilon = d/4 again. Infinitely many close to x_0, so z_0 not a limit. 
+        ($\Longleftarrow$). Suppose that the sequence converges. Suppose for a contradiction that $L_S$ has more than one element. Clearly $x_0 \in L_S$; consider the subsequence formed by taking every point in the original sequence. Name one of the other elements $y \in L_S$. Let $d = \abs{x_0 - y}$ and let $\varepsilon = \frac{d}{4}$. By the definition of convergence, $\exists N \in \N$ such that $n_j > N$ implies $|a_{n_j} - y| < \varepsilon$. Then all those $a_{n_j}$ are not within $\varepsilon$ of $x_0$, which means that $\nexists N, n > N \Rightarrow \abs{a_n - x_0} < \varepsilon$. Therefore $x_0$ is not the limit of $(a_n)$, and we have a contradiction.
     \end{proof}
+
+
+
+
+
 
 
     \item 

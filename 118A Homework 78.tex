@@ -1,0 +1,267 @@
+\documentclass{article}
+
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath, amsthm, amssymb, hyperref}
+\usepackage{graphicx}
+
+\newcommand{\R}{\mathbb{R}}  
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\bH}{\mathbb{H}}
+
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\brac}[1]{\left[ #1 \right]}
+\newcommand{\paren}[1]{\left( #1 \right)}
+\newcommand{\norm}[1]{\left\Vert #1 \right\Vert}
+\newcommand{\ol}[1]{\overline{#1}}
+\newcommand{\iprod}[2]{\left\langle #1, #2 \right\rangle}
+% \newcommand{\lmap}[1]{\mathcal{L}(#1)}
+% \newcommand{\lmap2}[1]{\mathcal{L}(#1, #2)}
+
+
+\DeclareMathOperator{\real}{Re}
+\DeclareMathOperator{\imag}{Im}
+
+\newcommand{\comp}[2]{#1 \circ #2}
+
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\range}{range}
+\DeclareMathOperator{\GL}{GL}
+
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+\newenvironment{definition}{\begin{proof}[Definition]}{\end{proof}}
+
+% lol, lmao
+\linespread{1.1}
+\renewcommand{\baselinestretch}{1.17}
+
+% from 117
+    % \newenvironment{practice}
+    % [2]{\begin{trivlist}
+    % \item[\hskip \labelsep {\bfseries     
+    % % "debug mode": for working on it
+    % % Practice #1, Week #2.
+    % % "release mode": for submitting
+    % Week #2: Practice #1.
+    % }\hskip \labelsep]}{\end{trivlist}}
+    
+\begin{document}
+
+
+% ------------------------------------------ %
+%                 START HERE                 %
+% ------------------------------------------ %
+
+\title{Homework 7\/8} % Replace with appropriate title
+\author{Nathaniel Hamovitz\\Math 118A, Ponce, F22}
+\date{due 2022-12-03}
+
+\maketitle
+
+\textbf{(1) }
+Let $f: X \to Y$ be a function. Prove:
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\begin{enumerate}
+    \item 
+    $\forall A \subseteq X, A \subseteq f^{-1}(f(A))$
+    \begin{proof}
+        Let $a \in A$. Then $f(a) \in f(A)$. Then $a$ is a point where $\exists y = f(a) \in f(A)$ such that $f(x) = f(a) = y = f(a)$. %
+        % 
+        Hence $a \in f^{-1}(f(A))$.
+    \end{proof}
+
+
+    \item 
+    $\forall B \subseteq Y, f(f^{-1}(B)) \subseteq B$
+    \begin{proof}
+        Let $b \in f(f^{-1}(B))$. Then $\exists x \in f^{-1}(B)$ such that $f(x) = b$. Because $x \in f^{-1}(B)$, $\exists y \in B$ such that $f(x) = y$. But $f(x) = b$, so $b = y$, so $b \in B$. Hence $f(f^{-1}(B)) \subseteq B$.        
+    \end{proof}
+
+
+    \item 
+    What can you say if $\forall A \subseteq X, A = f^{-1}(f(A))$?
+    \begin{proof}
+        That $f$ is injective! Suppose for a contradiction that it is not. Then $\exists a, b \in X$ such that $a \ne b$ and $f(a) = f(b)$. Let $A = \set{a} \subseteq X$. Then $f^{-1}(f(A)) \supseteq \set{a, b} \ne \set{a}$, which is a contradiction.
+        
+        % Let $c = f(a) = f(b) \in f(A)$. Then $f^{-1}(A)$ includes all $d \in $
+        
+    \end{proof}
+
+
+    \item 
+    What can you say if $\forall B \subseteq Y, f(f^{-1}(B)) = B$?
+    \begin{proof}
+        That $f$ is surjective! Suppose for a contradiction that it is not. Then $\exists y \in Y, \forall x \in X, f(x) \ne y$. Consider $B = Y \subseteq Y$. Then $f^{-1}(Y) \subseteq X$ and $f(f^{-1}(Y)) \subsetneq Y$; by not-surjectivity, the image of the inverse image (really of any set), must necessarily miss at least one point in $Y$. This is a contradiction because we have $f(f^{-1}(B)) = B$ by hypothesis.
+        
+    \end{proof}
+\end{enumerate}
+
+\newpage % ---
+
+\textbf{(2) }
+Prove that the function $g : [0, 1] \to \R$ defined as
+$$g(x) = \begin{cases}
+    1/q, & x \in \Q \cap [0, 1], \quad x = p/q \text{ irreducible form}, \\
+    0, & x \in \Q^c \cap [0, 1]
+\end{cases}$$
+is discontinuous on $\Q \cap [0, 1]$ and continuous on $\Q^c \cap [0, 1]$.
+\begin{proof}
+    First, that $g$ is discontinuous on $\Q \cap [0, 1]$. That is, $\forall r \in \Q \cap [0, 1], \exists \varepsilon > 0, \forall \delta > 0, \exists y(\delta) \in [0, 1], \brac{\abs{r - y} < \delta \text{ and } \abs{g(r) - g(y)} \ge \varepsilon}$. 
+
+    Let $r = p/q \in \Q \cap [0, 1]$. Consider $\varepsilon = \frac{1}{2q}$. Let $\delta > 0$. By the density of rationals in the real numbers, $\exists y \in \Q^c \cap (r - \delta, r + \delta) \cap [0, 1]$. Then $\abs{r - y} < \delta$. But because $y$ is irrational, $g(y) = 0$, and so $\abs{g(r) - g(y)} = \frac{1}{q} > \frac{1}{2q} = \varepsilon$. 
+
+    Now, that $g$ is continuous on $\Q^c \cap [0, 1]$. That is, $\forall a \in \Q^c \cap [0, 1], \forall \varepsilon > 0, \exists \delta(a, \varepsilon) > 0, \forall y \in (a - \delta, a + \delta) \cap [0, 1], \abs{g(a) - g(y)} < \varepsilon$. (This is slightly nonstandard but it is equivalent.)
+
+    Let $a \in \Q^c \cap [0, 1]$. Let $\varepsilon > 0$. Note that $g$ is always positive and as $a$ is irrational, $g(a) = 0$ and so $\abs{g(a) - g(y)} = g(y)$. OK I'm unsure how to formalize this, but the intuition is: if $y$ is irrational, $g(y) = 0 < \varepsilon$. If $y$ is rational, you can find a window to constrain $y$ in that's small enough that rationals inside it must be of a large enough denominator. Something like: 
+    Let $n \in \N$ be the smallest number such that $\frac{1}{n} < \varepsilon$. Let $\delta = \frac{1}{4n}$. 
+\end{proof}
+
+
+\newpage % ---
+
+\textbf{(3) }
+The one with distance to a set. Prove:
+
+\renewcommand{\labelenumi}{(\roman{enumi})}
+\begin{enumerate}
+    \item 
+    For any $x \in \R^n$ and any $\varepsilon > 0$, there exists $a_{x,\varepsilon} \in A$ such that
+    $$f_A(x) \ge \norm{x - a_{x,\varepsilon}} - \varepsilon.$$
+    \begin{proof}
+        Case 1: $x \in A$. Consider $a_{x,\varepsilon} = x$. Then $f_A(x) = 0 \ge \norm{x - a_{x,\varepsilon}} - \varepsilon = -\varepsilon$.
+
+        Case 2: $x \notin A$. Let $D_x = \set{\norm{x - a} : a \in A}$. So $f_A(x) = \inf D_x$. By definition of infimum, $\forall \varepsilon > 0, \exists d \in D_x$ such that $f_A(x) \le d le f_A(x) + \varepsilon$. Let $a_{x, \varepsilon}$ be the $a$ that gives rise to that $d$. Then $\norm{x - a_{x,\varepsilon}} \le f_A(x) + \varepsilon$, or $f_A(x) \ge \norm{x - a_{x,\varepsilon}} - \varepsilon$.
+    \end{proof}
+
+
+    \item 
+    For any $y \in \R^n$ and any $a \in A$, $f_A(y) \le \norm{y - a}$.
+    \begin{proof}
+        This is by definition of infimum; $f_A(y)$ is a lower bound of the set $\set{\norm{y - a} : a \in A}$.
+    \end{proof}
+
+
+    \item 
+    Using (i) and (ii) show that for any $x, y \in \R^n$,
+    $$f_A(y) - f_A(x) \le \norm{x - y}.$$
+    \begin{proof}
+        % Note that by Triangle Inequality $\norm{x - a} \le \norm{x - a}
+        Triangle Inequality!
+    \end{proof}
+
+
+    \item 
+    $f_A$ is uniformly continuous.
+    \begin{proof}
+        Uniform continouity: $\forall \varepsilon > 0, \exists \delta(\varepsilon) > 0, \forall x, y \in \R^n, \norm{x - y} < \delta \Rightarrow \abs{f_A(x) - f_A(y)} < \varepsilon$. 
+
+        Let $\varepsilon > 0$. Consider $\delta = \varepsilon$. Note that either $\abs{f_A(x) - f_A(y)} = f_A(x) - f_A(y)$ or $\abs{f_A(x) - f_A(y)} = f_A(y) - f_A(x)$, and either way the result follows from (iii).
+    \end{proof}
+
+
+    \item 
+    $f_A(x) = 0$ iff $x \in \ol{A}$.
+    \begin{proof}
+        ($\Longrightarrow$) Suppose $f_A(x) = 0$. Then $\inf D_x = 0$. Suppose for a contradiction that $x \notin \ol{A}$. Then $x \notin A$ and $x \notin A'$. Then $\exists r > 0, B_r(x) - \set{x} \cap A = \emptyset$. But separately we have $x \notin A$, and so it becomes $\exists r > 0, B_r(x) \cap A = \emptyset$. That is, $x$ is at least $r$ away from any point in $A$. Thus $r$ is a lower bound of $D_x$. But $r > 0 = \inf D_x$. Contradiction.
+
+        ($\Longleftarrow$) Suppose $x \in \ol{A}$. By one characterization of the limit point, $\exists (x_n) \in A$ such that $\lim x_n = x$. (If $x \in A$, then we have the trivial $\forall n, x_n = x$.) Then $\forall n \in \N, f_A(x_n) = 0$ and uniformly continuous implies continuous implies we can interchange the function and the limit: $f_A(x) = f_A(\lim x_n) = \lim f_A(x_n) = 0$.         
+    \end{proof}
+
+
+    \item
+    If $n = 2$ and $A = \set{(x, y) \in \R^2 : x^2 + y^2 \ge 1}$, what is the graph of $f_A$?
+    \begin{proof}[Solution]
+        $A$ is the area of the plane outside the unit circle, so $f_A$ is $0$ on $A$ and $1 - \norm{v}$ for $v \in A^c$. The graph of $f_A$ looks like this:
+
+        \includegraphics[width=\textwidth]{118A HW78 3-6 + Screenshot 2022-12-03 224123.png}
+    \end{proof}
+\end{enumerate}
+
+\newpage % ---
+
+\textbf{(4)}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\begin{enumerate}
+    \item 
+    Prove that $\mathbb{S}^1 = \set{(x, y) \in \R^2 : x^2 + y^2 = 1}$ is connected and compact.
+    \begin{proof}
+        $\mathbb{S}^1$ is the image of the compact set $[0, 2\pi]$ under the continuous function $s : \R \to \R^2$ defined by $s(x) = (\cos x, \sin x)$. $s$ is continuous because $\sin$ and $\cos$ are both continuous. 
+    \end{proof}
+
+
+    \item 
+    Prove that there cannot exist a function $f : \mathbb{S}^1 \to \R$ continuous and injective.
+    \begin{proof}
+        Suppose for a contradiction that there were such a function. Because $\mathbb{S}^1$ is a compact set and $f$ is continuous, the image is also compact (that is, some closed and bounded interval $[a, b]$) and $f$ reaches its maximum somewhere. Let $v = (\cos \theta, \sin \theta)$ be the point in $\mathbb{S}^1$ that gives rise to the maximum. Because $f$ is continuous, for small variation of $\theta$ \textbf{in either direction}, the image must be $(b - \varepsilon, b]$. But then $f$ is not injective.        
+    \end{proof}
+\end{enumerate}
+
+\newpage % ---
+
+\textbf{(5) }
+Give an example of $f : \R \to \R$ continuous such that
+\renewcommand{\labelenumi}{(\roman{enumi})}
+\begin{enumerate}
+    \item 
+    $K$ compact with $f^{-1}(K)$ not compact.
+    \begin{proof}[Example]
+        $K = [-1, 1]$ and $f = \sin$; $\sin^{-1}(K) = \R$.
+    \end{proof}
+
+
+    \item 
+    $A$ connected with $f^{-1}(A)$ not connected.
+    \begin{proof}[Example]
+        $A = \set{1}$ and
+        $$f = \begin{cases}
+            1 & \abs{x} \ge 1 \\
+            \abs{x} & \abs{x} < 1
+        \end{cases}$$. Then $f^{-1}(A) = (-\infty, -1] \cup [1, \infty)$.
+        
+    \end{proof}
+
+
+    \item 
+    $B$ open with $f(B)$ not open.
+    \begin{proof}[Example]
+        $B = \R$ and $f = \sin$; $\sin(\R) = [-1, 1]$.
+    \end{proof}
+    
+    
+    \item 
+    $C$ closed with $f(C)$ not closed.
+    \begin{proof}[Example]
+        $C = \R$ and $f(x) = e^x$; $f(\R) = (0, \infty)$.
+    \end{proof}
+\end{enumerate}
+
+\newpage % ---
+
+\textbf{(6) }
+The space of invertible $2\times 2$ matrices $\GL(2; \R)$ is open among the space of all matrices.
+\begin{proof}
+    I propose that $\GL(2; \R)$ is the inverse image of an open set under some continuous map $g: \mathcal{M}_{2 \times 2}(\R) \to \R$. I propose as $g$ the determinant function; for a matrix $A = \begin{pmatrix}x & y \\ w & z\end{pmatrix}$, $\det A = xz - yw$.
+
+    Denote by $\phi$ the trivial map from $\mathcal{M}_{2 \times 2}(\R) \to \R^4$. This is continuous because we're considering the distance metric between matrices to be the euclidean distance between the equivalent 4-vectors \textit{under the trivial bijection}.
+
+    Let $f_x : \R^4 \to \R$ be the map projecting a 4-vector to its first component; that is, $f_x(x, y, w, z) = x$. I claim $f_x$ is continuous. Let $\varepsilon > 0$. Take $\delta = \epsilon$. We have
+    \begin{align*}
+        \abs{f(\vec{a}) - f(\vec{b})} &= \abs{a_x - b_x} \\
+        &= \sqrt{(a_x - b_x)^2} \\
+        &\le \sqrt{(a_x - b_x)^2 + (a_y - b_y)^2 + (a_w - b_w)^2 + (a_z - b_z)^2} \\
+        &= \norm{\vec{a} - \vec{b}} < \delta = \varepsilon
+    \end{align*}
+
+    By a parallel argument, projection onto any other component is also continuous.
+
+    Now consider the function $F(x, y, w, z) = xz - yw$ from $\R^4 \to \R$, which is continuous because it is an arithmetic combination of continuous functions (the projections onto each component).
+
+    $\det = F \circ \phi$ is continuous as the composition of two continuous functions. Because a matrix is invertible iff its determinant is nonzero, the inverse image $\det^{-1}(\R - \set{0})$ is exactly the set of invertible functions. $\R - \set{0} = (-\infty, 0) \cup (0, \infty)$ is open and therefore $\GL(2; \R)$ must be open as well.    
+\end{proof}
+\end{document}

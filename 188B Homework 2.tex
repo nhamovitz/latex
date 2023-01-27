@@ -1,0 +1,136 @@
+\documentclass{article}
+
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath, amsthm, amssymb, hyperref}
+
+\newcommand{\R}{\mathbb{R}}  
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\bH}{\mathbb{H}}
+
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\brac}[1]{\left[ #1 \right]}
+\newcommand{\paren}[1]{\left( #1 \right)}
+\newcommand{\norm}[1]{\left\Vert #1 \right\Vert}
+\newcommand{\ol}[1]{\overline{#1}}
+\newcommand{\iprod}[2]{\left\langle #1, #2 \right\rangle}
+% \newcommand{\lmap}[1]{\mathcal{L}(#1)}
+% \newcommand{\lmap2}[1]{\mathcal{L}(#1, #2)}
+
+
+\DeclareMathOperator{\real}{Re}
+\DeclareMathOperator{\imag}{Im}
+
+\newcommand{\comp}[2]{#1 \circ #2}
+
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\range}{range}
+
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+\newenvironment{definition}{\begin{proof}[Definition]}{\end{proof}}
+
+\newcommand{\problem}[1]{\noindent \textbf{#1}}
+
+% lol, lmao
+\linespread{1.1}
+\renewcommand{\baselinestretch}{1.17}
+
+\begin{document}
+
+% 117
+% \renewcommand{\labelenumi}{(\alph{enumi})}
+
+% ------------------------------------------ %
+%                 START HERE                 %
+% ------------------------------------------ %
+
+\title{Homework 2} % Replace with appropriate title
+\author{Nathaniel Hamovitz\\Math 118B, Ponce, W23}
+\date{due DUE DATE}
+
+\maketitle
+
+\problem{1. }
+Let $f: [a, b] \to \R$ be a function such that $\exists M > 0, \exists \alpha > 1$ such that
+$$\forall x, y \in \R, \qquad \abs{f(x) - f(y)} \le M\abs{x - y}^{\alpha}.$$
+Prove that $f$ is constant.
+
+\begin{proof}
+    
+\end{proof}
+
+% ---
+
+\problem{2. }
+Let $n \in \N$, $n > 2$, $a, b \in \R$, and $f: \R \to \R$ be defined as
+$$f(x) = x^n + ax + b.$$
+Prove that $f$ vanishes in at most three points.
+
+\begin{proof}
+    
+\end{proof}
+
+% ---
+
+\problem{3. }
+Show that $(\sin(x))' = \cos(x)$.
+\begin{proof}
+    
+\end{proof}
+
+% ---
+
+\problem{4. }
+For $a \ge 0$ define $f_a : \R \to \R$ by
+$$f_a(x) = \begin{cases}
+    x^a \sin\paren{\frac{1}{x}}, & \quad x > 0 \\
+    0, & x \le 0
+\end{cases}$$
+For which values of $a$ is:
+% TODO
+
+\begin{proof}
+    
+\end{proof}
+
+% ---
+
+\problem{Rudin 5-2. }
+Suppose $f'(x) > 0$ in $(a, b)$. Prove that $f$ is strictly increasing in $(a, b)$.
+\begin{proof}
+    
+\end{proof}
+
+Now let $g$ be the inverse function of $f$. Prove that $g$ is differentiable, and that
+$$g'(f(x)) = \frac{1}{f'(x)} \quad x \in (a, b).$$
+\begin{proof}
+    
+\end{proof}
+
+% ---
+
+\problem{Rudin 5-3. }
+Suppose $g$ is a real function on $\R$, with bounded derivative (say $\abs{g'} \le M$). Fix $\varepsilon > 0$, and define $f(x) = x + \varepsilon g(x)$. Prove that $f$ is one-to-one if $\varepsilon$ is small enough.
+
+\begin{proof}
+    
+\end{proof}
+
+% ---
+
+\problem{Rudin 5-15. }
+Suppose $a \in \R$, $f$ is a twice-differentiable real function on $(a, \infty)$, and $M_0$, $M_1$, $M_2$ are the least upper bounds of $\abs{f(x)}$, $\abs{f'(x)}$, $\abs{f''(x)}$, respectively, on $(a, \infty)$. Prove that
+$$M_1^2 \le 4 M_0 M_2.$$
+
+\begin{proof}
+    
+\end{proof}
+
+
+
+\end{document}

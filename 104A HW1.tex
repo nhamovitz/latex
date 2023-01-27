@@ -1,0 +1,352 @@
+\documentclass{article}
+
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath, amsthm, amssymb, hyperref, graphicx}
+\graphicspath{{.}}
+
+\newcommand{\R}{\mathbb{R}}  
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\bH}{\mathbb{H}}
+
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\brac}[1]{\left[ #1 \right]}
+\newcommand{\paren}[1]{\left( #1 \right)}
+\newcommand{\norm}[1]{\left\Vert #1 \right\Vert}
+\newcommand{\ol}[1]{\overline{#1}}
+\newcommand{\iprod}[2]{\left\langle #1, #2 \right\rangle}
+% \newcommand{\lmap}[1]{\mathcal{L}(#1)}
+% \newcommand{\lmap2}[1]{\mathcal{L}(#1, #2)}
+
+
+\DeclareMathOperator{\real}{Re}
+\DeclareMathOperator{\imag}{Im}
+
+\newcommand{\comp}[2]{#1 \circ #2}
+
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\range}{range}
+
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+\newenvironment{definition}{\begin{proof}[Definition]}{\end{proof}}
+
+% lol, lmao
+\linespread{1.1}
+\renewcommand{\baselinestretch}{1.17}
+
+  
+\begin{document}
+
+% 117
+% \renewcommand{\labelenumi}{(\alph{enumi})}
+
+% ------------------------------------------ %
+%                 START HERE                 %
+% ------------------------------------------ %
+
+\title{Homework 1} % Replace with appropriate title
+\author{Nathaniel Hamovitz\\Math 104A, Atzberger, F22}
+\date{due 2023-01-18}
+
+\maketitle
+\setlength{\parindent}{0cm}
+
+% 1.1: 2abc✅, 3ac✅, 8❔, 9abcd✅, 11a✅ bcd❔, 14✅, 15abcd❔, 25a❔b✅. 11 and 15 are in notebook
+
+% 1.2: 1cd, 2ab, 5ab, 10, 11ab, 15ab, 16, 17, 25. 
+
+\section{Ch 1.1}
+
+
+\textbf{2}  % ✅
+Show that the following equations have at least one solution in the given intervals.
+\renewcommand{\labelenumi}{\textbf{\alph{enumi}.}}
+\begin{enumerate}
+    \item
+    $\sqrt{x} - \cos x = 0$ on $[0, 1]$
+    \begin{proof}[Solution]
+        We use the Intermediate Value Theorem, which is allowed because the LHS is a continuous function of $x$. $\sqrt{(0)} - \cos (0) = -1 < 0$ and $\sqrt{(1)} - \cos (1) \approx 0.460 > 0$. Thus by IVT, $\exists c \in [0, 1], \sqrt{c} - \cos c = 0$.
+    \end{proof}
+
+    \item 
+    $e^x - x^2 + 3x - 2 = 0$ on $[0, 1]$.
+    \begin{proof}[Solution]
+        The process is similar. $e^0 - 0^2 + 3(0) - 2 = -1 < 0$ and $e^1 - 1^2 + 3(1) - 2 = e > 0$.
+    \end{proof}
+
+    \item 
+    $-3 \tan(2x) + x = 0$ on $[0, 1]$.
+    \begin{proof}[Solution]
+        Here, testing the endpoints finds us the solution directly. $-3 \tan(2(0)) + 0 = 0$ and $0 \in [0, 1]$.
+    \end{proof}
+\end{enumerate}
+
+% ---
+
+\textbf{3}  % ✅
+Find intervals containing solutions to the following equations.
+\begin{enumerate}
+    \item 
+    $x - 2^{-x} = 0$
+    \begin{solution}
+        $[0, 1]$ works; $0 - 2^0 = -1 < 0$ and $1 - 2^{-1} = 1 - \frac{1}{2} = \frac{1}{2} > 0$.
+    \end{solution}
+
+    \addtocounter{enumi}{1}
+    \item
+    $3x - e^x = 0$
+    \begin{solution}
+        $[0, 1]$ works again; $3(0) - e^0 = -1 < 0$ and $3(1) - e^1 = 3 - e \approx 0.3 > 0$.
+    \end{solution}
+\end{enumerate}
+
+% ---
+
+\textbf{8} % ✅
+Suppose $f \in C[a, b]$ and $f'(x)$ exists on $(a, b)$. Show that if $f'(x) \ne 0$ for all $x \in (a, b)$, then there can exists at most one number $p \in [a, b]$ with $f(p) = 0$
+
+\begin{proof}
+    The derivative is everywhere nonzero, so there are no critical points. Thus the function can't possibly "turn around," because doing so would create a local extrema, which would be a critical point, which is impossible. Hence there might or might not be one crossing of the x-axis in the interval but there can't be more than one.
+    % derivative everywhere nonzero
+    % no critical points
+    % can't turn around
+    % might or might not be a crossing but if there is one
+    % there can't be another
+\end{proof}
+
+% ---
+
+\textbf{9}  % ✅
+Let $f(x) = x^3$.
+\begin{enumerate}
+    \item 
+    Find the second Taylor polynomial $P_2(x)$ about $x_0 = 0$
+    \begin{solution}
+        $$P_2(x) = 0 + 0 + 0 = 0$$
+    \end{solution}
+
+    \item 
+    Find $R_2(0.5)$ and the actual error in using $P_2(0.5)$ to approximate $f(0.5)$.
+    \begin{solution}
+        $$R_2(x) = 1(x)^3$$
+        Because the $\xi(x)$ term falls out in the third derivative, $R_2$ is the exact error. Thus $R_2(0.5) = 0.125$ is the exact error in using $P_2(0.5)$ to approximate $0.5^3$.
+    \end{solution}
+
+    \item 
+    Now about $x_0 = 1$:
+    \begin{solution}
+        $$P_2(x) = 1 + 3(x - 1) + \frac{6}{2}(x - 1)^2$$
+    \end{solution}
+
+    \item 
+    And the associated remainder term again:
+    \begin{solution}
+        Using the formula for the remainder term at $x_0 = 1$,
+        $$R_2(x) = 1(x - 1)^3$$
+        Then $R_2(0.5) = -0.125$ and $P_2(0.5) = 1 + 3(-0.5) + 3(-0.5)^2 = 1 - 1.5 + 0.75 = 0.25$, giving an exact error of $-0.125$. This makes sense because the $\xi(x)$ term fell out of the derivative again.
+    \end{solution}
+
+\end{enumerate}
+
+% ---
+
+\textbf{11}
+Find the second Taylor polynomial $P_2(x)$ for the function $f(x) = e^x \cos x$ about $x_0 = 0$.
+
+We'll need three derivatives:
+\begin{align*}
+    f(x) &= e^x \cos x \\
+    f'(x) &= e^x \paren{\cos x - \sin x} \\
+    f''(x) &= -2e^x \sin x \\
+    f^{(3)} &= -2e^x(\sin x + \cos x)
+\end{align*}
+
+\begin{enumerate}
+    \item % ✅
+    Thus by Taylor, $P_2(x) = 1\brac{1 + 1\cdot x + 0\cdot x^2} = 1 + x$ and so $P_2(0.5) = 1.5$. Likewise $R_2(x) = -\frac{1}{3}e^{\xi(x)}\paren{\sin\xi(x) + \cos\xi(x)}(x^3)$. $\sin$ and $\cos$ are both bounded in magnitude by $1$, so a reasonable upper bound for absolute error would be $R_2(0.5) \le \frac{1}{3}e^0.5(2)(0.5^3) \approx 1.37393 \cdot 10^{-1}$.
+
+    \item
+    As above, $R_2(x) = -\frac{1}{3}e^{\xi(x)}\paren{\sin\xi(x) + \cos\xi(x)}(x^3)$. We take the absolute value and note that the sum of the trigonometric functions must always be $\le 2$, and the other parts of the function are monotonically increasing. Thus on $[0, 1]$, $\abs{R_2} \le \frac{1}{3} \cdot e^{1} \cdot 2 \cdot 1^3 = \frac{2}{3}e$.
+
+    \item
+    $\int_{0}^{1} P_2(x) dx = \int_{0}^{1} 1 + x \: dx = \brac{x + \frac{1}{2}x^2}_{0}^1 = 1.5$
+
+    \item
+    $\int_{0}^{1} \abs{R_2(x)} \: dx = \frac{1}{3}\int_{0}^{1} e^{\xi(x)}\brac{\sin\xi(x) + \cos\xi(x)} x^3 \: dx \le \frac{2}{3}\int_{0}^{1}e^{x} x^3 \: dx \approx 0.356$
+\end{enumerate}
+
+% ---
+
+\textbf{14} % ✅
+Let $f(x) = 2x \cos(2x) - (x - 2)^2$ and $x_0 = 0$
+
+We'll need five derivatives:
+\begin{align*}
+    f &= 2x\cos(2x) - (x - 2)^2 \\
+    &= 2x \cos(2x) -x^2 + 4x - 4 \\
+    f' &= 2\cos(2x) + 2x\paren{-\sin(2x)}\cdot 2 - 2x + 4 \\
+    &= 2\brac{\cos(2x) - 2x\sin(2x) - x + 2} \\
+    f^{(2)} &= 2\brac{-\sin(2x) \cdot 2 - 2\sin(2x) - 2x\cos(2x) \cdot 2 - 1} \\
+    &= 2\brac{-4\sin(2x) - 4x \cos(2x) - 1} \\
+    &= -8\paren{\sin(2x) + x\cos(2x)} - 2
+    \text{(used derivative-caluclator for the remaining three)} \\
+    f^{(3)} &= 16 x \sin (2x) - 24\cos(2x) \\
+    f^{(4)} &= 64 \sin(2x) + 32x \cos(2x) \\
+    f^{(5)} &= 160 \cos(2x) - 64 x \sin(2x)
+\end{align*}
+\begin{enumerate}
+    \item 
+    Now we plug in $x_0 = 0$, giving
+    $$P_3(x) = -4 + 6x - x^2 - 4x^3$$
+    and thus $P_3(0.4) = -2.016$
+
+    \item 
+    By formula,
+    $$R_3(x) = \frac{64\sin(2\xi(x)) + 32 \xi(x) \cos(2\xi(x))}{24}(x^4).$$
+    A reasonable upper bound for the error at $x = 0.4$ would be $R_3(0.4) \le \frac{64 \cdot 1 + 32 \cdot 0.4 \cdot 1}{24}(0.4^4) = 8.192 \cdot 10^{-2}$.
+
+    The absolute error is $e_{\text{abs}} = \abs{P_3(0.4) - f(0.4)} \approx 1.336536748 \cdot 10^{-2}$.
+
+    \item 
+    The fourth derivative at $0$ is itself $0$, so in fact $P_4(x) = P_3(x) = -4 + 6x - x^2 - 4x^3$, and again $P_4(0.4) = -2.016$.
+
+    \item 
+    However, moving up a derivative allows us the bound the error much tighter; now $R_4(x) = \frac{160\cos(2\xi(x)) - 64 \xi(x) \sin(2\xi(x))}{120}(x^5)$, and applying the same heuristics as before for the bound gives us $R_4(0.4) \le \frac{160 - 64(0)}{120}(0.4^5) = 1.365\bar{3} \cdot 10^{-2}$, an error bound about  6 times smaller. Finally, because $P_4(x) = P_3(x)$, the absolute error remains the same at $\approx 1.336536748 \cdot 10^{-2}$.
+\end{enumerate}
+
+% ---
+
+\textbf{15}
+\includegraphics[width=\textwidth]{HW1p15.jpg}
+% ---
+
+\textbf{25} % ✅
+\begin{enumerate}
+    \item 
+    The nice property of the Taylor polynomial is that the first $n$ derivatives match the original function at $x_0$. It's a quite good approximation locally, but then becomes very bad.
+    % what the heck
+    % TA: it's not, really? but the nice thing is that   the first n derivatives are the same at x_0. quite good approximation locally, but then v bad
+
+    \item  % ✅
+    From the clues given, we now that $f(1) = -1$, $f'(1) = 4$, and $f''(1) = 6$. Thus at $x_0 = 1$, $P_2(x) = -1 + 4(x - 1) + 3(x - 1)^2$.
+\end{enumerate}
+
+
+
+\section{Ch 1.2}
+% 1.2: 1cd✅, 2ab✅, 5ab✅, 10 ( ✅in code), 11ab (✅ see pic), 15ab, 16, 17, 25
+
+\textbf{1} % ✅
+\begin{enumerate}
+    \setcounter{enumi}{2}
+
+    \item 
+    $p = e; p^* = 2.718$. $e_{abs} = \abs{e - 2.718} \approx 0.282 \cdot 10^{-3}$; $e_{rel} = \frac{\abs{e - 2.718}}{e} \approx 0.104 \cdot 10^{-3}$.
+
+    \item
+    $p = \sqrt{2}; p^* = 1.414$. $e_{abs} = \abs{\sqrt{2} - 1.414} \approx 0.214 \cdot 10^{-3}$; $e_{rel} = \frac{\abs{e - 2.718}}{\sqrt{2}} \approx 0.151 \cdot 10^{-3}$.
+\end{enumerate}
+
+% ---
+
+\textbf{2} % ✅
+\begin{enumerate}
+    \item 
+    $p = e^{10}; p^* = 22000$. $e_{abs} = \abs{e^{10} - 22000} \approx 0.265 \cdot 10^{2}$; $e_{rel} = \frac{\abs{e^{10} - 22000}}{e^{10}} \approx 0.120 \cdot 10^{-2}$.
+
+    \item 
+    $p = 10^{\pi}; p^* = 1400$. $e_{abs} = \abs{10^{\pi} - 1400} \approx 0.145 \cdot 10^{2}$; $e_{rel} = \frac{\abs{10^{\pi} - 1400}}{10^{\pi}} \approx 0.105 \cdot 10^{-1}$.
+\end{enumerate}
+
+% ---
+
+\textbf{5} % ✅
+\begin{enumerate}
+    \item 
+    \begin{enumerate}
+        \renewcommand{\labelenumii}{(\roman{enumii})}
+        \item $\frac{4}{5} + \frac{1}{3} = \frac{12 + 5}{15} = \frac{17}{15} = 0.11\bar{3} \cdot 10^{1}$
+        \item 3-digit chopping: $\frac{4}{5} + \frac{1}{3} = 0.800 + 0.333 = 1.133$ becomes $0.113 \cdot 10^{1}$, for a relative error of $\approx 0.294 \cdot 10^{-2}$.
+        \item 3-digit rounding: $\frac{4}{5} + \frac{1}{3} = 0.800 + 0.333 = 1.133$ becomes $0.113 \cdot 10^{1}$, for the same relative error of $\approx 0.294 \cdot 10^{-2}$.
+    \end{enumerate}
+
+    \item 
+    \begin{enumerate}
+        \item $\frac{4}{5} \cdot \frac{1}{3}  = \frac{4}{15} = 0.26\bar{6} \cdot 10^{0}$
+        \item 3-digit chopping: $\frac{4}{5} \cdot \frac{1}{3} = 0.800 \cdot 0.333 = 0.2664$ becomes $0.266 \cdot 10^{0}$, for a relative error of $0.25 \cdot 10^{-2}$.
+        \item 3-digit rounding: $\frac{4}{5} \cdot \frac{1}{3} = 0.800 \cdot 0.333 = 0.2664$ becomes $0.266 \cdot 10^{0}$, for the same relative error of $0.25 \cdot 10^{-2}$.        
+    \end{enumerate}
+\end{enumerate}
+
+% ---
+
+\textbf{10}
+% 4 digit chopping
+\begin{enumerate}
+    \item $\displaystyle \frac{\frac{13}{14}-\frac{6}{7}}{2e - 5.4}$ becomes $\frac{0.9285 - 0.8571}{2(2.718) - 5.400} = \frac{0.0714}{0.036} = 1.98\bar{3}$ becomes $0.1983 \cdot 10^{-1}$, for a relative error of $\approx 0.153 \cdot 10^{-1}$
+    \item $\displaystyle -10\pi + 6e - \frac{3}{62}$ becomes $-10(3.141) - 6(2.718) - 0.04838 = 31.41 - fl(16.308) - 0.04838 = 31.41 - 16.30 - 0.04838 = fl(15.11) - 0.04838 = fl(15.06162) = 0.1506 \cdot 10^{2}$
+    \item $\displaystyle \frac{2}{9} \cdot \frac{9}{7}$ becomes $fl\paren{fl\paren{\frac{2}{9}} \cdot fl\paren{\frac{9}{7}}} = 0.2855 \cdot 10^{0}$
+    \item $\displaystyle \frac{\sqrt{13} + \sqrt{11}}{\sqrt{13} - \sqrt{11}}$ becomes $fl\paren{\frac{fl\paren{fl\paren{\sqrt{13}} + fl\paren{\sqrt{11}}}}{fl\paren{fl\paren{\sqrt{13}} - fl\paren{\sqrt{11}}}}} = 0.2394 \cdot 10^{2}$
+\end{enumerate}
+
+% ---
+
+\textbf{15}
+For problem 15a, the classic quadratic formula gives $x_1 = 92.26$ (with errors $e_{abs} = 0.015420372687700024$ and $e_{rel} = 0.00016716833390104444$) and $x_2 = 0E+2$ (with errors $e_{abs} = 0.005420372687694908$ and $e_{rel} = 1.0$). The rationalized quadratic formula gives $x_1 = -Infinity$ (with errors $e_{abs} = 0$ and $e_{rel} = 0.0$) and $x_2 = 0.005421$ (with errors $e_{abs} = 6.273123050919496e-07$ and $e_{rel} = 0.00011573231975654487$).
+
+For problem \text{15b}, the classic quadratic formula gives $x_1 = 0E+2$ (with errors $e_{abs} = 0.005419735788228408$ and $e_{rel} = 1.0$) and $x_2 = -92.26$ (with errors $e_{abs} = 0.004580264211782037$ and $e_{rel} = 4.964764373626535e-05$). The rationalized quadratic formula gives $x_1 = 0.005421$ (with errors $e_{abs} = 1.264211771591535e-06$ and $e_{rel} = 0.0002332607752461634$) and $x_2 = Infinity$ (with errors $e_{abs} = 0$ and $e_{rel} = 0.0$).
+
+% ---
+
+\textbf{16}
+\begin{enumerate}
+    \item 
+    The classic quadratic formula gives $x_1 = 1.903$ (with errors $e_{abs} = 0.0006535189493659388$ and $e_{rel} = 0.00034353308184164813$) and $x_2 = 0.743$ (with errors $e_{abs} = 0.0004048300139565253$ and $e_{rel} = 0.0005445619904688071$). The rationalized quadratic formula gives $x_1 = 1.903$ (with errors $e_{abs} = 0.0006535189493659388$ and $e_{rel} = 0.00034353308184164813$) and $x_2 = 0.7430$ (with errors $e_{abs} = 0.0004048300139565253$ and $e_{rel} = 0.0005445619904688071$).
+
+    \item
+    The classic quadratic formula gives $x_1 = -0.07798$ (with errors $e_{abs} = 0.0004287938339695291$ and $e_{rel} = 0.005468695703666852$) and $x_2 = -4.060$ (with errors $e_{abs} = 0.00038027344468982704$ and $e_{rel} = 9.367218367827243e-05$). The rationalized quadratic formula gives $x_1 = -0.07840$ (with errors $e_{abs} = 8.793833969525378e-06$ and $e_{rel} = 0.00011215366975477655$) and $x_2 = -4.082$ (with errors $e_{abs} = 0.02238027344469007$ and $e_{rel} = 0.005512898978762303$).
+
+    \item
+The classic quadratic formula gives $x_1 = 1.223$ (with errors $e_{abs} = 0.00012977027895555437$ and $e_{rel} = 0.00010611941954393391$) and $x_2 = -2.223$ (with errors $e_{abs} = 0.00012977027895555437$ and $e_{rel} = 5.837960184110239e-05$). The rationalized quadratic formula gives $x_1 = 1.223$ (with errors $e_{abs} = 0.00012977027895555437$ and $e_{rel} = 0.00010611941954393391$) and $x_2 = -2.223$ (with errors $e_{abs} = 0.00012977027895555437$ and $e_{rel} = 5.837960184110239e-05$).
+
+\item
+The classic quadratic formula gives $x_1 = 6.235$ (with errors $e_{abs} = 0.001759153700807481$ and $e_{rel} = 0.0002820621507828506$) and 
+$x_2 = -0.3205$ (with errors $e_{abs} = 0.00017937060119210813$ and $e_{rel} = 0.0005593456194448491$). The rationalized quadratic formula gives $x_1 = 6.240$ (with errors $e_{abs} = 0.0032408462991924125$ and $e_{rel} = 0.0005196362757201132$) and $x_2 = -0.3208$ (with errors $e_{abs} = 0.00012062939880785883$ and $e_{rel} = 0.0003761682536101697$).
+\end{enumerate}
+
+% ---
+
+\textbf{17}
+\begin{enumerate}
+    \item 
+    For problem 17a, the classic quadratic formula gives $x_1 = 92.24$ (with errors $e_{abs} = 0.004579627312310208$ and $e_{rel} = 4.964657360695745e-05$) and 
+    $x_2 = 0.01500$ (with errors $e_{abs} = 0.009579627312305092$ and $e_{rel} = 1.7673373888205772$). The rationalized quadratic formula gives $x_1 = 33.32$ (with errors $e_{abs} = 58.924579627312305$ and $e_{rel} = 0.6387863640918536$) and $x_2 = 0.005418$ (with errors $e_{abs} = 2.372687694907581e-06$ and $e_{rel} = 0.000437735158007484$). 
+
+    \item
+    For problem 17b, the classic quadratic formula gives $x_1 = 0E+2$ (with errors $e_{abs} = 0.005419735788228408$ and $e_{rel} = 1.0$) and $x_2 = -92.25$ (with errors $e_{abs} = 0.005419735788223079$ and $e_{rel} = 5.8747072028339875e-05$). The rationalized quadratic formula gives $x_1 = 0.005417$ (with errors $e_{abs} = 2.7357882284081286e-06$ and $e_{rel} = 0.0005047825826399551$) and $x_2 = Infinity$ (with errors $e_{abs} = 0$ and $e_{rel} = 0.0$).
+\end{enumerate}
+
+% ---
+
+\textbf{25}
+\begin{enumerate}
+    \item 
+    With the nesting technique, the polynomial becomes
+    $$f(x) = (((1.01e^x - 4.6)e^{x} - 3.11)e^{x} + 12.2)e^{x} - 1.99$$
+
+    \item
+    Normal evaluation of $f(1.53)$: $-6.09$ (absolute error $1.52$, relative error $0.200$)
+
+    \item
+    Nested evaluation of $f(1.53)$: $-7.07$ (absolute error $0.540$, relative error $0.0710$)
+
+    \item
+    see above
+\end{enumerate}
+
+\end{document}

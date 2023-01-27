@@ -51,17 +51,30 @@
 
 \title{Homework 2} % Replace with appropriate title
 \author{Nathaniel Hamovitz\\Math 118B, Ponce, W23}
-\date{due DUE DATE}
+\date{due 2023-01-26}
 
 \maketitle
 
-\problem{1. }
+\problem{1. } % ✅
 Let $f: [a, b] \to \R$ be a function such that $\exists M > 0, \exists \alpha > 1$ such that
 $$\forall x, y \in \R, \qquad \abs{f(x) - f(y)} \le M\abs{x - y}^{\alpha}.$$
 Prove that $f$ is constant.
 
 \begin{proof}
-    
+    First we show that $f$ must be continuous on $[a, b]$. Let $\varepsilon > 0$. Consider $\delta = \paren{\frac{\varepsilon}{M}}^{\frac{1}{\alpha}}$. Then $\abs{x - y} < \delta$ implies $\abs{f(x) - f(y)} < \varepsilon$.
+
+    Now we show that $f$ must also be differentiable. Let $x_0 \in [a, b]$ and let
+    $$f'(x) = \lim_{x \to x_0} \frac{f(x) - f(x_0)}{x - x_0}.$$
+    Note that
+    \begin{align*}
+        0 &\le \abs{\frac{f(x) - f(x_0)}{x - x_0}} \\
+        &= \frac{\abs{f(x) - f(x_0)}}{x - x_0} \\
+        &\le \frac{M\abs{x - x_0}^{\alpha}}{x - x_0} \\
+        &= M\abs{x - x_0}^{\alpha - 1}
+    \end{align*}
+    and as $\alpha > 1$, this clearly goes to $0$ as $x \to x_0$. Thus by Squeeze Theorem $f' \equiv 0$.
+
+    Finally we appeal to the Mean Value Theorem; the equation $f(x_2) - f(x_1) = (x_2 - x_1)f'(x)$ must, for all $x_1, x_2 \in (a, b)$, hold for some $x \in (a, b)$. But we know that $\forall x \in (a, b), f'(x) = 0$, and hence that $\forall x_1, x_2 \in (a, b), f(x_2) = f(x_1)$. Therefore $f$ is constant.    
 \end{proof}
 
 % ---
@@ -72,7 +85,18 @@ $$f(x) = x^n + ax + b.$$
 Prove that $f$ vanishes in at most three points.
 
 \begin{proof}
-    
+    We have $f'(x) = nx^{n - 1} + a$, and so at any critical point $f'(x) = 0$, 
+    \begin{align*}
+        0 &= nx^{n - 1} + a \\
+        -\frac{a}{n} &= x^{n - 1} \\
+        x &= \sqrt[n - 1]{-\frac{a}{n}}
+    \end{align*}
+
+    Such an expression has at most $2$ real solutions (1 when $n - 1$ is odd or $a = 0$; for $n - 1$, it depends on the sign of $a$; 2 solutions for $a < 0$ and $0$ for $a > 0$.)
+
+    The Mean Value Theorem tells us that each vanishing point of a function after the first requires a corresponding point where $f'(x) = 0$ somewhere before, in order to satisfy $f(x_2) - f(x_1) = 0 = (x_2 - x_1)f'(x)$.
+
+    Therefore $f$ vanishes in at most three points.    
 \end{proof}
 
 % ---
@@ -128,7 +152,19 @@ Suppose $a \in \R$, $f$ is a twice-differentiable real function on $(a, \infty)$
 $$M_1^2 \le 4 M_0 M_2.$$
 
 \begin{proof}
-    
+    It can be shown from the hypothesis that
+    $\forall h > 0$,
+    $$\abs{f'(x)} \le hM_2 + \frac{M_0}{h}.$$
+    (This is given as a hint in Rudin; deriving it involves a clever reformulation of the Taylor Polynomial Theorem.) From there by a property of the supremum we have that $M_1 \le hM_2 + \frac{M_0}{h}$. All these values are nonnegative so we can square and find $M_1^2 \le h^2M_2^2 + \frac{M_0^2}{h^2} + 2M_2 M_0$. Call the RHS $g(h)$; as $M_1^2 \le g(h)$ holds for all positive $h$, it suffices to show there $\exists h > 0, g(h) = 4M_0 M_2$. Consider $h = \sqrt{\frac{M_0}{M_2}}$ (can be deduced by solving for $h$ directly or by considering the critical points of $g$); then
+    \begin{align*}
+        g(h) &= \frac{M_0}{M_2} M_2^2 + \frac{M_0^2}{\frac{M_0}{M_2}} + 2M_2 M_0 \\
+        &= M_0 M_2 + M_0 M_2 + 2M_0 M_2 \\
+        &= 4M_0 M_2         
+    \end{align*}
+
+    As the above holds for $h > 0$, we must also consider when $M_0 = 0$; in that case, $f \equiv 0$ and so $f = f' = f'' = 0$ and indeed $0^2 \le 4 \cdot 0 \cdot 0$.
+
+    % what about $M_2 = 0$? Then,, f' must be constant with M_1 = f', and so $f = cx$, and sure c^2 \le inf * 0. that,, actually seems very undefined?
 \end{proof}
 
 

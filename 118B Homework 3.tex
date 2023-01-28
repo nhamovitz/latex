@@ -1,0 +1,134 @@
+\documentclass{article}
+
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath, amsthm, amssymb, hyperref}
+
+\newcommand{\R}{\mathbb{R}}  
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\bH}{\mathbb{H}}
+
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\brac}[1]{\left[ #1 \right]}
+\newcommand{\paren}[1]{\left( #1 \right)}
+\newcommand{\norm}[1]{\left\Vert #1 \right\Vert}
+\newcommand{\ol}[1]{\overline{#1}}
+\newcommand{\iprod}[2]{\left\langle #1, #2 \right\rangle}
+% \newcommand{\lmap}[1]{\mathcal{L}(#1)}
+% \newcommand{\lmap2}[1]{\mathcal{L}(#1, #2)}
+
+\DeclareMathOperator{\real}{Re}
+\DeclareMathOperator{\imag}{Im}
+
+\newcommand{\comp}[2]{#1 \circ #2}
+
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\range}{range}
+
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+\newenvironment{definition}{\begin{proof}[Definition]}{\end{proof}}
+
+\newcommand{\problem}[1]{\noindent \textbf{#1}}
+
+% lol, lmao
+\linespread{1.1}
+\renewcommand{\baselinestretch}{1.17}
+   
+\begin{document}
+
+% 117
+\renewcommand{\labelenumi}{(\alph{enumi})}
+
+% ------------------------------------------ %
+%                 START HERE                 %
+% ------------------------------------------ %
+
+\title{Homework 3} % Replace with appropriate title
+\author{Nathaniel Hamovitz\\Math 118B, Ponce, W23}
+\date{due 2022-02-06}
+
+\maketitle
+
+\problem{1. }
+Find
+\begin{enumerate}
+    \item 
+    $\displaystyle \lim_{n \to \infty} \sum_{k = 1}^{n} \frac{k^7}{n^8}$
+    \begin{solution}
+
+    \end{solution}
+    
+    \item 
+    $\displaystyle \lim_{n \to \infty} \sum_{k = 1}^{n} \frac{\sin \frac{k}{n}}{n}$
+    \begin{solution}
+
+    \end{solution}
+\end{enumerate}
+
+% ---
+
+\problem{2. }
+Let $f: [0, 1] \to \R$ be defined as
+$$f(x) = \begin{cases}
+    \frac{1}{q}, & x = \frac{p}{q} \text{ irreducible}, \\
+    0, & x \text{ irrational}.
+\end{cases}$$
+Prove that $f$ is Riemann integrable and calculate $\int_{0}^{1} f(x) \: dx$.
+
+\begin{proof}
+    
+\end{proof}
+
+% ---
+
+\problem{3. }
+Let $f: [0, 1] \to \R$ be a bounded function. Prove if $f$ is Riemann integrable, then
+$$\lim_{n \to \infty} \frac{1}{n} \sum_{k = 1}^{n} \brac{f\paren{\frac{k}{n}}} = \int_{0}^{1} f(x) \: dx.$$
+
+\begin{proof}
+    
+\end{proof}
+
+% ---
+
+\problem{4. }
+Let $\{q_1, q_2, \dots\} = \Q \cap [0, 1]$. Define $g_n : [0, 1] \to \R$ as
+$$g_n(x) = \begin{cases}
+    1, & x = q_n, \\
+    0, & x \ne q_n.
+\end{cases}$$
+Is
+$$G(x) = \sum_{n = 1}^{\infty} \frac{g_n(x)}{n^2}$$
+Riemann integrable?
+
+\begin{proof}
+    
+\end{proof}
+
+% ---
+
+\problem{5. }
+Let $f: [0, 1] \to \R$ be defined as
+$$f(x) = \begin{cases}
+    \sin \frac{1}{x}, & x > 0, \\
+    0, & x = 0.
+\end{cases}$$
+Prove that $f$ is Riemann integrable.
+
+\begin{proof}
+    
+\end{proof}
+
+% ---
+
+% suggested: Rudin Ch 6: 2, 5, 7, 8, 13, 15
+
+
+
+
+\end{document}

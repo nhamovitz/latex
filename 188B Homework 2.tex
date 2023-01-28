@@ -79,7 +79,7 @@ Prove that $f$ is constant.
 
 % ---
 
-\problem{2. }
+\problem{2. } % ✅
 Let $n \in \N$, $n > 2$, $a, b \in \R$, and $f: \R \to \R$ be defined as
 $$f(x) = x^n + ax + b.$$
 Prove that $f$ vanishes in at most three points.
@@ -92,7 +92,7 @@ Prove that $f$ vanishes in at most three points.
         x &= \sqrt[n - 1]{-\frac{a}{n}}
     \end{align*}
 
-    Such an expression has at most $2$ real solutions (1 when $n - 1$ is odd or $a = 0$; for $n - 1$, it depends on the sign of $a$; 2 solutions for $a < 0$ and $0$ for $a > 0$.)
+    Such an expression has at most $2$ real solutions (1 when $n - 1$ is odd or $a = 0$. For $n - 1$ even, it depends on the sign of $a$: 2 solutions for $a < 0$ and $0$ for $a > 0$.)
 
     The Mean Value Theorem tells us that each vanishing point of a function after the first requires a corresponding point where $f'(x) = 0$ somewhere before, in order to satisfy $f(x_2) - f(x_1) = 0 = (x_2 - x_1)f'(x)$.
 
@@ -115,39 +115,86 @@ $$f_a(x) = \begin{cases}
     x^a \sin\paren{\frac{1}{x}}, & \quad x > 0 \\
     0, & x \le 0
 \end{cases}$$
-For which values of $a$ is:
-% TODO
-
-\begin{proof}
+For which values of $a$:
+\begin{enumerate}
+    \item \dots is $f_a$ continuous (on $\R$)?
+    \begin{proof}
+        As the composition of continuous functions, $f_a$ is continuous on $\R - \{0\}$ for all $a$. The only possible problem is at $x = 0$. For $a = 0$, $x^a = x^0 = 1$ and the function has crazy oscillations as $x \to 0$. But for any $a > 0$, $x^a$ becomes very small as $x \to 0$, and since the $\sin$ term is bounded, the whole thing reaches $0$ at $0$.        
+    \end{proof}
     
-\end{proof}
+    \item \dots does $f_a'(0)$ exist?
+    \begin{proof}
+        
+    \end{proof}
+
+    \item \dots is $f_a'$ continuous at $x = 0$?
+    \begin{proof}
+        
+    \end{proof}
+
+    \item \dots does $f_a''(0)$ exist?
+    \begin{proof}
+        
+    \end{proof}
+
+    \item \dots is $f_a''$ continuous at $x = 0$? 
+    \begin{proof}
+        
+    \end{proof}
+
+\end{enumerate}
 
 % ---
 
-\problem{Rudin 5-2. }
+\problem{Rudin 5-2. (pt 1)}
 Suppose $f'(x) > 0$ in $(a, b)$. Prove that $f$ is strictly increasing in $(a, b)$.
 \begin{proof}
-    
+    This is a simple application of the Mean Value Theorem. Let $x_1, x_2 \in (a, b)$ such that $x_2 > x_1$, the equation $f(x_1) - f(x_2) = (x_2 - x_1) f'(x)$ for \textit{some} $x \in (x_1, x_2)$. The RHS is positive, and so we have $f(x_1) > f(x_2)$.    
 \end{proof}
 
+\problem{Rudin 5-2. (pt 2)}
 Now let $g$ be the inverse function of $f$. Prove that $g$ is differentiable, and that
 $$g'(f(x)) = \frac{1}{f'(x)} \quad x \in (a, b).$$
 \begin{proof}
-    
+    We first show that $g$ is differentiable on $(a, b)$. Let $x_0 \in (a, b)$. As $g = f^{-1}$, $x - x_0 = g(f(x)) - g(f(x_0))$. Hence
+    \begin{align*}
+        1 &= \frac{g(f(x)) - g(f(x_0))}{x - x_0} \\
+        1 &= \frac{g(f(x)) - g(f(x_0))}{x - x_0} \cdot 1 \\
+        1 &= \frac{g(f(x)) - g(f(x_0))}{x - x_0} \cdot \frac{f(x) - f(x_0)}{f(x) - f(x_0)} \\
+        1 &= \frac{g(f(x)) - g(f(x_0))}{f(x) - f(x_0)} \cdot \frac{f(x) - f(x_0)}{x - x_0}
+    \end{align*}
+    Now take the limit on both sides as $x \to x_0$:
+    \begin{align*}
+        \lim_{x \to x_0} 1 &= \lim_{x \to x_0} \brac{\frac{g(f(x)) - g(f(x_0))}{f(x) - f(x_0)} \cdot \frac{f(x) - f(x_0)}{x - x_0}} \\
+        1 &= \lim_{x \to x_0} \frac{g(f(x)) - g(f(x_0))}{f(x) - f(x_0)} \cdot \lim_{x \to x_0} \frac{f(x) - f(x_0)}{x - x_0}        
+    \end{align*}
+    Finally note that since $f'$ exists, $f$ is continuous, and thus as $x \to x_0$, $\abs{f(x) - f(x_0)} \to 0$. Hence, while the LHS remains 1, the RHS is in the form of derivative formulas, and we can write
+    $1 = g'(f(x)) \cdot f'(x)$.
+    Simply divide by $f'(x)$ (recalling that $f'$ is always positive) and we have
+    $$g'(f(x)) = \frac{1}{f'(x)}.$$    
 \end{proof}
 
 % ---
 
-\problem{Rudin 5-3. }
+\problem{Rudin 5-3. } % ✅
 Suppose $g$ is a real function on $\R$, with bounded derivative (say $\abs{g'} \le M$). Fix $\varepsilon > 0$, and define $f(x) = x + \varepsilon g(x)$. Prove that $f$ is one-to-one if $\varepsilon$ is small enough.
 
 \begin{proof}
+    Let $x_1, x_2 \in \R$ (WLOG, suppose $x_1 \le x_2$) and suppose that $f(x_1) = f(x_2)$. Then $f(x_2) - f(x_1) = 0$ and so by the Mean Value Theorem either $x_2 - x_1 = 0$ or $f'(x) = 0$ for some $x \in (x_1, x_2)$.  
     
+    Suppose for a contradiction that $f'(x) = 0$. We have $f'(x) = 1 + \varepsilon g'(x)$. Hence 
+    \begin{align*}
+        0 &= 1 + \varepsilon g'(x) \\
+        g'(x) &= -\frac{1}{\varepsilon} \\
+        \abs{g'(x)} &= \frac{1}{\varepsilon}       
+    \end{align*}
+
+    Now consider when $\displaystyle \varepsilon \le \frac{1}{M + 1}$. Then $\abs{g'(x)} = M + 1 > M$, which is a contradiction. Thus $x_2 = x_1$, and therefore $f$ is injective.
 \end{proof}
 
 % ---
 
-\problem{Rudin 5-15. }
+\problem{Rudin 5-15. } % ✅❔
 Suppose $a \in \R$, $f$ is a twice-differentiable real function on $(a, \infty)$, and $M_0$, $M_1$, $M_2$ are the least upper bounds of $\abs{f(x)}$, $\abs{f'(x)}$, $\abs{f''(x)}$, respectively, on $(a, \infty)$. Prove that
 $$M_1^2 \le 4 M_0 M_2.$$
 

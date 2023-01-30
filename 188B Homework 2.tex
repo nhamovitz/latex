@@ -104,6 +104,18 @@ Prove that $f$ vanishes in at most three points.
 \problem{3. }
 Show that $(\sin(x))' = \cos(x)$.
 \begin{proof}
+    The proof relies upon a few trigonometric identities and the facts that: $\lim_{x \to 0} \frac{\sin x}{x} = 1$ (which can be proven by considering the areas of the two right triangles with base along the $x$-axis and height equal to $\abs{\sin x}$ and $\abs{\tan x}$, respectively, and then employing the Squeeze Theorem); and $\lim_{x \to 0} \frac{1 - \cos x}{x} = 0$ (which can be proven using the identity $1 - \cos^2 x = \sin^2 x$ and some clever algebra).
+
+\begin{align*}
+    (\sin x)' &\equiv \lim_{h \to 0} \frac{\sin(x + h) - \sin(x)}{h} \\
+    &= \lim_{h \to 0} \frac{(\cos x)(\sin h) + (\sin x)(\cos h) - \sin x}{h} \\
+    &= \lim_{h \to 0} \frac{(\cos x)(\sin h)}{h} + \frac{(\sin x)(\cos h) - \sin x}{h} \\
+    &= \lim_{h \to 0} \frac{(\cos x)(\sin h)}{h} + \lim_{h \to 0} \frac{(\sin x)(\cos h) - \sin x}{h} \\
+    &= \lim_{h \to 0} (\cos x)\frac{\sin h}{h} + \lim_{h \to 0} \frac{(\sin x)(\cos h - 1)}{h} \\
+    &= \cos x \cdot \brac{\lim_{h \to 0} \frac{\sin h}{h}} - \sin x \cdot \brac{\lim_{h \to 0} \frac{1 - \cos h}{h}} \\
+    &= \cos x \cdot 1 - sin x \cdot 0 \\
+    &= \cos x
+\end{align*}
     
 \end{proof}
 
@@ -119,27 +131,51 @@ For which values of $a$:
 \begin{enumerate}
     \item \dots is $f_a$ continuous (on $\R$)?
     \begin{proof}
-        As the composition of continuous functions, $f_a$ is continuous on $\R - \{0\}$ for all $a$. The only possible problem is at $x = 0$. For $a = 0$, $x^a = x^0 = 1$ and the function has crazy oscillations as $x \to 0$. But for any $a > 0$, $x^a$ becomes very small as $x \to 0$, and since the $\sin$ term is bounded, the whole thing reaches $0$ at $0$.        
+        As the composition of continuous functions, $f_a$ is continuous on $\R - \{0\}$ for all $a$. The only possible problem is at $x = 0$. Consider when $a = 0$. The $\lim_{x \to 0 } x^0 = 1$ and so $\lim_{x \to 0} f_a(x) = \sin\paren{\frac{1}{x}}$, which is not even defined; that function has crazy oscillations as $x \to 0$. But for any $a > 0$, $\lim_{x \to 0} x^a = 0$, and since the $\sin$ term is bounded, the whole thing reaches $0$ at $0$. As a consequence, for any $\epsilon > 0,\exists \delta > 0, \abs{f_{a > 0}(\delta)} = \epsilon$, and hence $f_a$ is continuous on all of $\R$.
     \end{proof}
     
     \item \dots does $f_a'(0)$ exist?
     \begin{proof}
-        
+        By definition,
+        \begin{align*}
+            f_a'(0) &= \lim_{x \to 0} \frac{f_a(x) - f_a(0)}{x - 0} \\
+            &= \lim_{x \to 0} \frac{f_a(x) - 0}{x} \\
+            &= \lim_{x \to 0} x^{a - 1} \sin\paren{\frac{1}{x}}            
+        \end{align*}
+
+        $f_a'(0)$ exists when this limit converges, and by a similar argument to above, this limit only converges when $a > 1$, so that $\lim_{x \to 0} x^{a - 1} = 0$.
     \end{proof}
 
     \item \dots is $f_a'$ continuous at $x = 0$?
     \begin{proof}
-        
+        Clearly $f_a' = 0$ on $x < 0$, we saw above that $f_a'(0) = 0$ if $a > 1$, and for $x > 0$ the function is well-behaved and we can use our usual differentiation rules:
+        \begin{align*}
+            f_a'(x) &= ax^{a - 1}\sin\paren{\frac{1}{x}} + x^a \cos\paren{\frac{1}{x}}\paren{-\frac{1}{x^2}}, \quad x > 0 \\
+            &= ax^{a - 1}\sin\paren{\frac{1}{x}} - x^{a - 2} \cos\paren{\frac{1}{x}}
+        \end{align*}
+
+        Perfectly continuous on $x > 0$; to ensure continuity at $x = 0$, this expression must go to $0$ as $x \to 0$. Our smallest exponent of $x$ now is $a - 2$, and so we need $a > 2$.        
     \end{proof}
 
     \item \dots does $f_a''(0)$ exist?
     \begin{proof}
+        Once again we appeal to the limit definition:
+        \begin{align*}
+            f_a''(0) &= \lim_{x \to 0} \frac{f_a'(x) - f_a'(0)}{x - 0} \\
+            &= \lim_{x \to 0} \frac{ax^{a - 1}\sin\paren{\frac{1}{x}} - x^{a - 2} \cos\paren{\frac{1}{x}}}{x} \\
+            &= \lim_{x \to 0} ax^{a - 2}\sin\paren{\frac{1}{x}} - x^{a - 3} \cos\paren{\frac{1}{x}}
+        \end{align*}
+
+        The derivative exists iff this limit converges; our smallest exponent is now $a - 3$ and so $f''_a(0)$ will exist when $a > 3$.
         
     \end{proof}
 
     \item \dots is $f_a''$ continuous at $x = 0$? 
     \begin{proof}
-        
+        And now we must again consider the expression for $f''_a$ on $x > 0$:
+        $$f''_a(x) = (a)(a - 1)x^{a - 2} \sin\paren{\frac{1}{x}} + ax^{a - 1}\cos\paren{\frac{1}{x}}\paren{-\frac{1}{x^2}} - (a - 2)x^{a - 3}\cos\paren{\frac{1}{x}} - x^{a - 2}\sin\paren{\frac{1}{x}}\paren{-\frac{1}{x^2}}$$
+
+        And the smallest power of $x$, coming from the last term, will be $a - 4$; therefore $f_a''$ is continuous at $x = 0$ when $a > 4$.        
     \end{proof}
 
 \end{enumerate}
